@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include "tile_map.h"
 
-#include <strlib.h>
+#include <stdlib.h>
 
 void LoadMap(const char* file);
 void ClearMap();
@@ -38,8 +38,8 @@ typedef enum {
 	ScaleFade,
 	ToTarget,
 }  EffectType;
-void AddEffect(const Vector2& position, EffectType effect, int spriteId, float lifetime = 1);
-void AddEffect(const Vector2& position, EffectType effect, int spriteId, const Vector2& target, float lifetime = 1);
+//void AddEffect(const Vector2 *position, EffectType effect, int spriteId, float lifetime);
+//void AddEffect(const Vector2 *position, EffectType effect, int spriteId, const Vector2 *target, float lifetime);
 
 #define PlayerSpawnType "player_spawn"
 #define MobSpawnType "mob_spawn"
