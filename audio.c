@@ -29,12 +29,12 @@ void ChangeMusic(int musicIdx) {
 void PauseMusic() {
 }
 
-void PlaySound(int soundIdx){
+void PlaySoundIdx(int soundIdx){
 }
 
-int LoadSound(const char *fileName) {
+int LoadSoundFile(const char *fileName) {
 }
-int LoadMusic(const char *fileName) {
+int LoadMusicFile(const char *fileName) {
 }
 
 void UnloadAll_Audio() {

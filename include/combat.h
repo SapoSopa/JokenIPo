@@ -24,7 +24,8 @@ typedef enum Choice {
     Paper,
     Air,
     Water,
-    Gun
+    Gun,
+    NoneChoice = -1
 } Choice;
 
 

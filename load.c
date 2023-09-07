@@ -8,21 +8,21 @@
 #include "raylib.h"
 
 
-const int TO_LOAD_TEXTURES = 3;
-const int TO_LOAD_SOUNDS = 3;
-const int TO_LOAD_MUSICS = 3;
+#define TO_LOAD_TEXTURES 3
+#define TO_LOAD_SOUNDS 3
+#define TO_LOAD_MUSICS 3
 
-static char textures[TO_LOAD_TEXTURES][100] = {
+static char texturesToLoad[TO_LOAD_TEXTURES][100] = {
     "assets/textures/texture1.png",
     "assets/textures/texture2.png",
     "assets/textures/texture3.png"
 };
-static char sounds[TO_LOAD_SOUNDS][100] = {
+static char soundsToLoad[TO_LOAD_SOUNDS][100] = {
     "assets/sounds/sound1.wav",
     "assets/sounds/sound2.wav",
     "assets/sounds/sound3.wav"
 };
-static char musics[TO_LOAD_MUSICS][100] = {
+static char musicsToLoad[TO_LOAD_MUSICS][100] = {
     "assets/musics/music1.ogg",
     "assets/musics/music2.ogg",
     "assets/musics/music3.ogg"
