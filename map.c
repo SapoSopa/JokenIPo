@@ -9,8 +9,8 @@
 #include "raymath.h"
 
 #include <math.h>
-#include <unordered_map>
-#include <list>
+//#include <unordered_map>
+//#include <list>
 
 typedef struct {
     Vector2 Position;
@@ -278,10 +278,10 @@ void UpdateSprite(int spriteId, Vector2 position) {
     SpriteInstances[spriteId].Position = position;
 }
 
-void RemoveSprite(SpriteInstance* sprite) {
+/*void RemoveSprite(SpriteInstance* sprite) {
     if (sprite != NULL)
         RemoveSprite(sprite->Id);
-}
+}*/
 
 void RemoveSprite(int spriteId) {
     if (SpriteInstances[spriteId].Id != spriteId)
