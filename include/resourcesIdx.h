@@ -17,9 +17,13 @@
 
 // textures index
 
-#define Texture_name_1 0
+#define Texture_torre 0
 #define Texture_name_2 1
 #define Texture_name_3 2
 #define Texture_name_4 3
+
+// maps index
+
+#define Map_fase1 0
 
 #endif
