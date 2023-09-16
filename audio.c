@@ -22,7 +22,6 @@ static int soundsLen = 0;
 static int musicsLen = 0;
 
 void StartMusic() {
-    InitAudioDevice();
     SetMasterVolume(0.20);
     PlayMusicStream(musics[mainmusic].music);// começa tocando a primeira musica, no caso, a principal
     musics[mainmusic].music.looping = true; // starta o loop
