@@ -66,4 +66,5 @@ char* LoadingStatus() {
     return loadingStatus[loadStatus];
 }
 void UnloadAll() {
+    UnloadAll_Audio();
 }
