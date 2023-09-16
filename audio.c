@@ -55,7 +55,7 @@ void LoadSoundFile(const char *fileName) {
     while(!feof(file)){
         sounds = (NameSound *) realloc(sounds, (soundsLen+1) * sizeof(NameSound));
         fscanf(file, " %99[^\n]", sounds[soundsLen].name);
-        char aux[100] = "audios/sounds/";
+        char aux[100] = "/assets/audios/";
         strcat(aux, sounds[soundsLen].name);
         sounds[soundsLen].sound = LoadSound(aux);
         soundsLen++; 
@@ -63,11 +63,11 @@ void LoadSoundFile(const char *fileName) {
     fclose(file);
 }
 void LoadMusicFile(const char *fileName) {
-        FILE *file = fopen(fileName, "r");
+    FILE *file = fopen(fileName, "r");
     while(!feof(file)){
         musics = (NameMusic *) realloc(musics, (musicsLen+1) * sizeof(NameMusic));
         fscanf(file, " %99[^\n]", musics[musicsLen].name);
-        char aux[100] = "audios/musics/";
+        char aux[100] = "/assets/audios/";
         strcat(aux, musics[musicsLen].name);
         musics[musicsLen].sound = LoadMusicStream(aux);
         musicsLen++; 
