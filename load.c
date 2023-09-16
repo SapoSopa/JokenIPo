@@ -80,8 +80,10 @@ void M_LoadTexture() {
 void ToLoadTextures() {
 }
 void ToLoadSounds() {
+    LoadSoundFile("/assets/audios/sounds.txt");
 }
 void ToLoadMusics() {
+    LoadMusicFile("/assets/audios/musics.txt");
 }
 
 int SaveGame() {
