@@ -20,17 +20,17 @@
 
 // sounds index
 
-#define sound_door 2
-#define sound_death 3
-#define sound_fire 4
-#define sound_scissors 5
-#define sound_paper 6
-#define sound_rock 7
-#define sound_gun 8
-#define sound_water 9
-#define sound_sponge 10
-#define sound_human 11
-#define sound_air 12
+#define sound_door 0
+#define sound_death 1
+#define sound_fire 2
+#define sound_scissors 3
+#define sound_paper 4
+#define sound_rock 5
+#define sound_gun 6
+#define sound_water 7
+#define sound_sponge 8
+#define sound_human 9
+#define sound_air 10
 
 // textures index
 
