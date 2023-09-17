@@ -73,7 +73,35 @@ void draw_tile(void *image, unsigned int sx, unsigned int sy, unsigned int sw, u
                unsigned int dx, unsigned int dy, float opacity, unsigned int flags) {
     Texture2D *texture = (Texture2D*)image;
     int op = 0xFF * opacity;
-    DrawTextureRec(*texture, (Rectangle) {sx, sy, sw, sh}, (Vector2) {dx, dy}, (Color) {op, op, op, op});
+
+	Vector2 myOriginCorner = {0, 0};
+/* 	if ((flags & TMX_FLIPPED_VERTICALLY)){
+		myOriginCorner.y += -sprite_height;
+	} */
+/* 	if ((flags & TMX_FLIPPED_HORIZONTALLY)){
+		myOriginCorner.x += sprite_width;
+	} */
+/* 	if ((flags & TMX_FLIPPED_DIAGONALLY)){
+		myOriginCorner.x += sprite_width;
+		myOriginCorner.y += sprite_height;
+	}
+	 */
+
+	if ((flags & ~TMX_FLIP_BITS_REMOVAL) == 0){
+    	DrawTextureRec(*texture, (Rectangle) {sx, sy, sw, sh}, (Vector2) {dx, dy}, (Color) {op, op, op, op});
+	}
+  	else if (flags & TMX_FLIPPED_HORIZONTALLY) {
+		DrawTexturePro(*texture, (Rectangle) {sx, sy, sw, sh}, (Rectangle) {dx, dy, sw, sh}, (Vector2) {0,0}, 0, (Color) {op, op, op, op});
+	} 
+ 	else if (flags & TMX_FLIPPED_VERTICALLY && flags & !TMX_FLIPPED_DIAGONALLY) {
+		DrawTexturePro(*texture, (Rectangle) {sx, sy, sw, sh}, (Rectangle) {dx, dy, sw, sh}, myOriginCorner, 180, (Color) {op, op, op, op});
+	}  
+/* 	else if (flags & TMX_FLIPPED_DIAGONALLY) {
+		DrawTexturePro(*texture, (Rectangle) {sx, sy, sw, sh}, (Rectangle) {dx, dy, sw, sh}, myOriginCorner, -90, (Color) {op, op, op, op});
+	} else {
+    	DrawTextureRec(*texture, (Rectangle) {sx, sy, sw, sh}, (Vector2) {dx, dy}, (Color) {op, op, op, op});
+
+	} */
 }
 
 void draw_layer(tmx_map *map, tmx_layer *layer) {
@@ -141,7 +169,7 @@ void draw_layer(tmx_map *map, tmx_layer *layer) {
 				image = myTs->image->resource_image;
 			}
 
-			flags = (layer->content.gids[(i*map->width)+j]) & ~TMX_FLIP_BITS_REMOVAL;
+			flags = (layer->content.gids[(i*map->width)+j]);
 			draw_tile(image, x, y, w, h, j*myTs->tile_width, i*myTs->tile_height, op, flags);
 		}
 	}
