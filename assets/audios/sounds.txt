@@ -1,0 +1,11 @@
+door.mp3
+death.mp3
+fire.mp3
+scissors.mp3
+paper.mp3
+rock.mp3
+gun.mp3
+water.mp3
+sponge.mp3
+hit.mp3
+air.mp3
