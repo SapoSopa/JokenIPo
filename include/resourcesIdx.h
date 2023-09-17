@@ -20,8 +20,6 @@
 
 // sounds index
 
-#define sound_hit  0
-#define sound_walk 1
 #define sound_door 2
 #define sound_death 3
 #define sound_fire 4
