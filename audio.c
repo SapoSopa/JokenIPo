@@ -16,10 +16,21 @@ typedef struct {
 } NameMusic;
 
 static NameSound sounds[11];
-static NameMusic musics[n];
+static NameMusic musics[]; // definindo o tamanho ainda
 
 static int soundsLen = 0;
 static int musicsLen = 0;
+
+int MusicTest(){
+    bool flag = false, index = -1;
+    for(int i = 0; i < musicsLen && !flag; i++){
+        if(IsMusicStreamPlaying(musics[i].music)){
+            index = i;
+            flag = true;
+        }
+    }
+    return index;
+}
 
 void StartMusic() {
     SetMasterVolume(0.30);
@@ -28,41 +39,40 @@ void StartMusic() {
     UpdateMusicStream(musics[music_main].music);
 }
 void ChangeMusic(int musicIdx) {
-    bool flag = false, index;
-    for(int i = 0; i < musicsLen && !flag; i++){
-        if(IsMusicStreamPlaying(musics[i].music)){
-            flag = true;
-            index = i;
-        }
-    }
-    StopMusicStream(musics[index].music);
+    int index = MusicTest();
+    if(index != -1)
+        StopMusicStream(musics[index].music);
     PlayMusicStream(musics[musicIdx].music);
     musics[musicIdx].music.looping = true;
 }
 
 void PauseMusic() {
-    bool flag = false, index;
-    for(int i = 0; i < musicsLen && !flag; i++){
-        if(IsMusicStreamPlaying(musics[i].music)){
-            flag = true;
-            index = i;
-        }
-    }
-    if(flag)
+    int index = MusicTest();
+    if(index != -1)
         PauseMusicStream(musics[index].music);
 }
 
+void UpdateMusic(){
+    int index = MusicTest();
+    if(index != -1)
+        UpdateMusicStream(musics[index].music);
+}
 // função pra resumir
 void ResumeMusic(int musicIDX){
-    bool flag = false;
-    if (IsMusicStreamPlaying(musics[musicIDX].music))
-        flag = true;
-    if (!flag)
+    if (!IsMusicStreamPlaying(musics[musicIDX].music))
         ResumeMusicStream(musics[musicIDX].music);
 }
 // criei uma função para mudar o volume da musica.
-void ChangeMusicVolume(float volume, int musicIdx){
-    SetMusicVolume(musics[musicIdx].music, volume);
+void ChangeMusicVolume(float volume){
+    for(int i = 0; i < musicsLen; i++){
+        SetMusicVolume(musics[i].music, volume);
+    }
+}
+
+void ChangeSoundEffectVolume(float volume){
+    for(int i = 0; i < soundsLen; i++){
+        SetSoundVolume(sounds[i].sound, volume);
+    }
 }
 
 void PlaySoundIdx(int soundIdx){
@@ -122,8 +132,7 @@ void UnloadAll_Audio() {
      for(int i = 0; i < soundsLen;i++)
         UnloadSound(sounds[i].sound);
     
-    free(musics);
-    free(sounds);
     CloseAudioDevice();
 }
+
 
