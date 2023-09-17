@@ -16,10 +16,10 @@ typedef struct {
     Music music;
 } NameMusic;
 
-static NameSound *sounds = NULL;
+static NameSound sounds[11];
 static NameMusic *musics = NULL;
 
-static int soundsLen = 0;
+static int soundsLen = 11;
 static int musicsLen = 0;
 
 void StartMusic() {
@@ -67,13 +67,13 @@ void PlaySoundIdx(int soundIdx){
 
 void LoadSoundFile(const char *fileName) {
     FILE *file = fopen(fileName, "r");
+    int i = 0;
     while(!feof(file)){
-        sounds = (NameSound *) realloc(sounds, (soundsLen+1) * sizeof(NameSound));
-        fscanf(file, " %99[^\n]", sounds[soundsLen].name);
+        fscanf(file, " %99[^\n]", sounds[i].name);
         char aux[100] = "assets/audios/";
-        strcat(aux, sounds[soundsLen].name);
-        sounds[soundsLen].sound = LoadSound(aux);
-        soundsLen++; 
+        strcat(aux, sounds[i].name);
+        sounds[i].sound = LoadSound(aux);
+        i++; 
     }
     fclose(file);
 }
