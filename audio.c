@@ -54,7 +54,7 @@ void PauseMusic() {
 
 // função pra resumir
 void ResumeMusic(int musicIDX){
-    ResumeMusicStream(musics[i].music);
+    ResumeMusicStream(musics[musicIDX].music);
 }
 // criei uma função para mudar o volume da musica.
 void ChangeMusicVolume(float volume, int musicIdx){
