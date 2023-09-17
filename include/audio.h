@@ -8,6 +8,7 @@ void PauseMusic(); // pauses music
 
 void PlaySoundIdx(int soundIdx); // play a sound that could be identified by a index
 void ChangeMusicVolume(float volume, int musicIdx); // change the music volume
+void ResumeMusic(int musicIDX);
 int LoadSoundFile(const char *fileName); // load sound and save in dynamic array of sounds
 int LoadMusicFile(const char *fileName); // load music and save in dynamic array of musics
 
