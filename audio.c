@@ -28,7 +28,7 @@ void StartMusic() {
     musics[music_main].music.looping = true; // starta o loop
     UpdateMusicStream(musics[music_main]);
 }
-void ChangeMusic(int ,int musicIdx) {
+void ChangeMusic(int musicIdx) {
     bool flag = false, index;
     for(int i = 0; i < musicsLen && !flag; i++){
         if(IsMusicStreamPlaying(musics[i].music)){
