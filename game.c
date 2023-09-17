@@ -28,13 +28,18 @@ int main(void)
     int flag=0;
     int framesSpeed = 10;            
     int framesCounter=0;
-    personagem.position = {350.0f, 280.0f};
+    personagem.position = {350.0f, 280.0f};//ajustar de acordo com o mapa
+    personagem.radius = 15;//ajustar de acordo com o mapa
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
-    Rectangle ParedeLatD= {};
-    Rectangle ParedeLatE= {};
-    Rectangle ParedeBaixo= {};
-    
+    //--------------------------------Adicionar retangulos do mapa------------------------------------------------------
+    Rectangle ParedeLatD1=  {};
+    Rectangle ParedeLatD2=  {};
+    Rectangle ParedeLatE1=  {};
+    Rectangle ParedeLatE2=  {};
+    Rectangle ParedeBaixo=  {};
+    Rectangle ParedeBaixo1= {};
+    Rectangle ParedeBaixo2= {};
+    Rectangle ParedeCima =  {};
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -53,33 +58,35 @@ int main(void)
         }
 
         // Movimento do personagem
-        if (IsKeyDown(KEY_UP)){ personagem.position.y -= 2.0f;flag=0;}
+        if (IsKeyDown(KEY_UP)){ 
+            
+            flag=0;
+            if(!CheckCollisionCircleRec(personagem.position, personagem.radius, ParedeCima )){
+                personagem.position.y -= 2.0f;
+            }
+        }
         
         if (IsKeyDown(KEY_DOWN)) {
-            personagem.position.y += 2.0f;
             flag=1;
-            if(CheckCollisionCircleRec(personagem.position, radius, ParedeBaixo )){
-                personagem.position.y = ParedeBaixo.position.y + personagem.radius;
+            if(!CheckCollisionCircleRec(personagem.position, personagem.radius, ParedeBaixo ) && !!CheckCollisionCircleRec(personagem.position, radius, ParedeBaixo1 )  && !CheckCollisionCircleRec(personagem.position, radius, ParedeBaixo2 )){
+                personagem.position.y += 2.0f;
             }
         }
         if (IsKeyDown(KEY_RIGHT)){
-            personagem.position.x += 2.0f;
             flag=2;
-            
-            if(CheckCollisionCircleRec(personagem.position, radius, ParedeLatD )){
-                personagem.position.x = ParedeLatD.Position.x - personagem.radius;
+            if(!CheckCollisionCircleRec(personagem.position, personagem.radius, ParedeLatD1 ) && !CheckCollisionCircleRec(personagem.position, radius, ParedeLatD2 )){
+               personagem.position.x += 2.0f;
             }
         }
         
-        if (IsKeyDown(KEY_LEFT)){ 
-            personagem.position.x -= 2.0f;
+        if (IsKeyDown(KEY_LEFT)){  
             flag=3;
-            if(CheckCollisionCircleRec(personagem.position, radius, ParedeLatE )){
-                personagem.position.x = ParedeLatD.Position.x + personagem.radius;
+            if(!CheckCollisionCircleRec(personagem.position, personagem.radius, ParedeLatE1 ) && !CheckCollisionCircleRec(personagem.position, radius, ParedeLatE2 )){
+                personagem.position.x -= 2.0f;
             }
         }
         
-        //if(CheckCollisionCircleRec(personagem.position, radius, ))
+    
         
         //----------------------------------------------------------------------------------
 
