@@ -1,4 +1,5 @@
 #include "include/audio.h"
+#include "include/resourcesIdx.h"
 
 #include "string.h"
 #include "stdio.h"
@@ -23,23 +24,37 @@ static int musicsLen = 0;
 
 void StartMusic() {
     SetMasterVolume(0.20);
-    PlayMusicStream(musics[mainmusic].music);// começa tocando a primeira musica, no caso, a principal
-    musics[mainmusic].music.looping = true; // starta o loop
-    UpdateMusicStream();
+    PlayMusicStream(musics[music_main].music);// começa tocando a primeira musica, no caso, a principal
+    musics[music_main].music.looping = true; // starta o loop
+    UpdateMusicStream(musics[music_main]);
 }
-void ChangeMusic(int musicIdx) {
-    if(IsMusicStreamPlaying())
-        StopMusicStream();
+void ChangeMusic(int ,int musicIdx) {
+    bool flag = false, index;
+    for(int i = 0; i < musicsLen && !flag; i++){
+        if(IsMusicStreamPlaying(musics[i].music)){
+            flag = true;
+            index = i;
+        }
+    }
+    StopMusicStream(musics[index].music);
     PlayMusicStream(musics[musicIdx].music);
     musics[musicIdx].music.looping = true;
 }
 
-// como tem uma função para pausar, mas não tem uma pra despausar, vou colocar os dois na mesma função
 void PauseMusic() {
-    if(IsMusicStreamPlaying())
-        PauseMusicStream();
-    else
-        ResumeMusicStream();
+    bool flag = false, index;
+    for(int i = 0; i < musicsLen && !flag; i++){
+        if(IsMusicStreamPlaying(musics[i].music)){
+            flag = true;
+            index = i;
+        }
+    }
+    PauseMusicStream(musics[index].music);
+}
+
+// função pra resumir
+void ResumeMusic(int musicIDX){
+    ResumeMusicStream(musics[i].music);
 }
 // criei uma função para mudar o volume da musica.
 void ChangeMusicVolume(float volume, int musicIdx){
@@ -55,7 +70,7 @@ void LoadSoundFile(const char *fileName) {
     while(!feof(file)){
         sounds = (NameSound *) realloc(sounds, (soundsLen+1) * sizeof(NameSound));
         fscanf(file, " %99[^\n]", sounds[soundsLen].name);
-        char aux[100] = "/assets/audios/";
+        char aux[100] = "assets/audios/";
         strcat(aux, sounds[soundsLen].name);
         sounds[soundsLen].sound = LoadSound(aux);
         soundsLen++; 
@@ -67,9 +82,9 @@ void LoadMusicFile(const char *fileName) {
     while(!feof(file)){
         musics = (NameMusic *) realloc(musics, (musicsLen+1) * sizeof(NameMusic));
         fscanf(file, " %99[^\n]", musics[musicsLen].name);
-        char aux[100] = "/assets/audios/";
+        char aux[100] = "assets/audios/";
         strcat(aux, musics[musicsLen].name);
-        musics[musicsLen].sound = LoadMusicStream(aux);
+        musics[musicsLen].music = LoadMusicStream(aux);
         musicsLen++; 
     }
     fclose(file);
