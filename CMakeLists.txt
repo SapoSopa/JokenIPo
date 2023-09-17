@@ -7,7 +7,13 @@ add_executable(jokenipo "main.c" "items.c" "arena.c" "combat.c" "enemy.c" "audio
 find_package(tmx REQUIRED)
 
 target_include_directories(jokenipo PUBLIC "include/")
-target_link_libraries(jokenipo PRIVATE tmx raylib)
+
+if (UNIX)
+  target_link_libraries(jokenipo PRIVATE tmx raylib)
+elseif (WIN32)
+  # Lembrar de atualizar o binário da raylib
+  target_link_libraries(jokenipo ${CMAKE_SOURCE_DIR}/src/lib/libtmx.a ${CMAKE_SOURCE_DIR}/src/lib/libraylib.a)
+endif()
 
 # The following libs should be transitively imported by raylib...
 find_package(Threads REQUIRED)
