@@ -1,6 +1,10 @@
 #pragma once
+#include <stdio.h>
 
-void DrawScreen(void (*screen)());
+static void (*activeScreen)() = NULL;
+
+void SetActiveScreen(void (*screen)());
+void UpdateScreen();
 
 void FoundEnemyCanvas();
 

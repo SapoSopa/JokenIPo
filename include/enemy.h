@@ -1,6 +1,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include "config.h"
 #include "combat.h"
 #include "items.h"
 
@@ -12,7 +13,7 @@ struct Enemy
     int maxLife;
     int level;
     // int InCombo;    //pensando se coloco isso no ambiente tambem
-    ItemID inventory[20];
+    ItemID inventory[MAX_INV_SIZE];
     CombatWheel MyCombatWheel;
 };
 

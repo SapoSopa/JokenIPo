@@ -24,11 +24,11 @@ int ArenaConstructor(Arena *arena, Player *player, Enemy *enemy) {
 }
 
 int PlayerConstructor(Player *player) {
-    player->life = 100;
-    player->maxLife = 100;
+    player->life = PLAYER_MAX_LIFE;
+    player->maxLife = PLAYER_MAX_LIFE;
     player->level = 1;
 
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < MAX_INV_SIZE; i++) {
         player->inventory[i] = NoneItem;
     }
     
@@ -155,7 +155,7 @@ int doPlayerItemAction(Arena *arena) {
         //remove item from inventory and organize it
 
         (arena->player)->inventory[itemInvIdx] = NoneItem;
-        for (int i = itemInvIdx; (arena->player)->inventory[i + 1] != NoneItem; i++) {
+        for (int i = itemInvIdx; (arena->player)->inventory[i + 1] != NoneItem && i < MAX_INV_SIZE; i++) {
             (arena->player)->inventory[i] = (arena->player)->inventory[i+1];
         }
     }
@@ -171,7 +171,7 @@ int doEnemyItemAction(Arena *arena) {
         //remove item from inventory and organize it
 
         (arena->enemy)->inventory[itemInvIdx] = NoneItem;
-        for (int i = itemInvIdx; (arena->enemy)->inventory[i + 1] != NoneItem; i++) {
+        for (int i = itemInvIdx; (arena->enemy)->inventory[i + 1] != NoneItem && i < MAX_INV_SIZE; i++) {
             (arena->enemy)->inventory[i] = (arena->enemy)->inventory[i+1];
         }
     }
@@ -197,10 +197,10 @@ int doCombat(Arena *arena) {
     }
 
     if (winner == 1) {
-        (arena->enemy)->life -= 10;
+        (arena->enemy)->life -= MIN_DMG;
     } 
     else if (winner == 2) {
-        (arena->player)->life -= 10;
+        (arena->player)->life -= MIN_DMG;
     }
 
     return 0;

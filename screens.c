@@ -6,9 +6,18 @@
 #include "sprites.h"
 #include <tmx.h>
 
-void (*activeScreen)() = NULL;
 const int screenWidth = 1280;
 const int screenHeight = 1024;
+
+void SetActiveScreen(void (*screen)()){
+    activeScreen = screen;
+}
+
+void UpdateScreen(){
+    if (activeScreen != NULL)
+        (*activeScreen)();
+    //printf("No active screen\n");
+}
 
 void mainMenu(){
     static int selecao = 0;//(0 é Play) (1 é creditos) (2 é exit)
@@ -36,14 +45,17 @@ void mainMenu(){
     if(IsKeyPressed(KEY_RIGHT)&&(selecao<2)){
         selecao++;
     }
+
     if(IsKeyPressed(KEY_ENTER)&&(selecao==0)){
-        //INICIAR JOGO
+        //PLAY
+        SetActiveScreen(&FoundEnemyCanvas); //temporário
     }
     if(IsKeyPressed(KEY_ENTER)&&(selecao==1)){
         //CREDITOS
     }
     if(IsKeyPressed(KEY_ENTER)&&(selecao==2)){
         //EXIT
+        QuitApplication();
     }
 
     //COLOCANDO A IMAGEM DE BACKGROUND ANTES DE DESENHAR TODOS OS CIRCULOS

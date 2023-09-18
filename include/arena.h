@@ -1,6 +1,7 @@
 #ifndef ARENA_H
 #define ARENA_H
 
+#include "config.h"
 #include "combat.h"
 #include "enemy.h"
 #include "items.h"
@@ -14,7 +15,7 @@ struct Player
     int maxLife;
     int level;
     // int InCombo;    //pensando se coloco isso no arena tambem
-    ItemID inventory[20];
+    ItemID inventory[MAX_INV_SIZE];
     CombatWheel MyCombatWheel;
 };
 
