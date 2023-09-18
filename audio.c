@@ -16,7 +16,7 @@ typedef struct {
 } NameMusic;
 
 static NameSound sounds[11];
-static NameMusic musics[]; // definindo o tamanho ainda
+static NameMusic musics[7]; // definindo o tamanho ainda
 
 static int soundsLen = 0;
 static int musicsLen = 0;
@@ -114,6 +114,7 @@ void LoadMusicFile(const char *fileName) {
         "assets/musicas/At Doom's Gate.mp3",
         "assets/musicas/Find the Flame.mp3",
         "assets/musicas/To Sail Forbidden Seas.mp3"
+    // falta adicionar a musica final
     };
     while(!feof(file)){
         fscanf(file, " %99[^\n]", musics[musicsLen].name);
