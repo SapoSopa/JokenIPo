@@ -17,6 +17,4 @@ struct M_Enemy
     CombatWheel MyCombatWheel;
 };
 
-ArenaEnemy ArenaEnemies[ENEMY_COUNT];
-
 #endif

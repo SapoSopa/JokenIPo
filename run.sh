@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ -e jokenipo ]
+then
+    rm jokenipo
+fi
+
 if [ ! -d build ]
 then
     mkdir build    
@@ -9,10 +14,19 @@ cd build
 cmake ..
 make
 
-mv jokenipo ../
+if [ -e jokenipo ]
+then
+    mv jokenipo ../
+fi
+
 cd ..
 
-chmod +x jokenipo
-./jokenipo
+if [ -e jokenipo ]
+then
+    chmod +x jokenipo
+    ./jokenipo
+
+    rm jokenipo
+fi
 
 # Path: CMakeLists.txt

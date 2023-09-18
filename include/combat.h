@@ -53,5 +53,6 @@ struct CombatWheel
 };
 
 void CombatWheelConstructor(CombatWheel *combatWheel);
+void DoCombat();
 
 #endif
