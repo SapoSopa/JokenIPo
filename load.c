@@ -11,9 +11,10 @@
 #include "raylib.h"
 
 #define TO_LOAD_TEXTURES 2
-#define TO_LOAD_SOUNDS 3
-#define TO_LOAD_MUSICS 3
+#define TO_LOAD_SOUNDS 11
+#define TO_LOAD_MUSICS 7
 #define TO_LOAD_MAPS 11
+
 
 static Texture GameTextures[TO_LOAD_TEXTURES];
 static Sound GameSounds[TO_LOAD_SOUNDS];
@@ -26,14 +27,26 @@ static char texturesToLoad[TO_LOAD_TEXTURES][100] = {
     "assets/Personagens/Alberto/Alberto_Comeco.png"
 };
 static char soundsToLoad[TO_LOAD_SOUNDS][100] = {
-    "assets/sounds/sound1.wav",
-    "assets/sounds/sound2.wav",
-    "assets/sounds/sound3.wav"
+    "assets/audios/door.mp3",
+    "assets/audios/death.mp3",
+    "sassets/audios/fire.mp3",
+    "assets/audios/scissors.mp3",
+    "assets/audios/paper.mp3",
+    "assets/audios/rock.mp3",
+    "assets/audios/gun.mp3",
+    "assets/audios/water.mp3",
+    "assets/audios/sponge.mp3",
+    "assets/audios/hit.mp3",
+    "assets/audios/air.mp3"
 };
 static char musicsToLoad[TO_LOAD_MUSICS][100] = {
-    "assets/musics/music1.ogg",
-    "assets/musics/music2.ogg",
-    "assets/musics/music3.ogg"
+    "assets/musicas/Strength of the Titans.mp3",
+    "assets/musicas/Gerudo Valley.mp3",
+    "assets/musicas/The Edge of Green.mp3",
+    "assets/musicas/At Doom's Gate.mp3",
+    "assets/musicas/Find the Flame.mp3",
+    "assets/musicas/To Sail Forbidden Seas.mp3",
+    "assets/musicas/Final Game.mp3"
 };
 static char mapsToLoad[TO_LOAD_MAPS][100] = {
     "assets/tilemaps/map1.tmx",
@@ -95,7 +108,7 @@ void ToLoadSounds() {
     LoadSoundFile("/assets/audios/sounds.txt");
 }
 void ToLoadMusics() {
-    LoadMusicFile("/assets/audios/musics.txt");
+    LoadMusicFile("/assets/musicas/musics.txt");
 }
 
 int SaveGame() {
