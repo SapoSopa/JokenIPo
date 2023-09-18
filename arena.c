@@ -5,7 +5,7 @@
 
 #include "raylib.h"
 
-int ArenaConstructor(Arena *arena, Player *player, Enemy *enemy) {
+int ArenaConstructor(Arena *arena, ArenaPlayer *player, ArenaEnemy *enemy) {
     arena->mapIdx = 0;
 
     arena->round = 0;
@@ -23,7 +23,7 @@ int ArenaConstructor(Arena *arena, Player *player, Enemy *enemy) {
     return 0;
 }
 
-int PlayerConstructor(Player *player) {
+int PlayerConstructor(ArenaPlayer *player) {
     player->life = PLAYER_MAX_LIFE;
     player->maxLife = PLAYER_MAX_LIFE;
     player->level = 1;

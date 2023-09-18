@@ -5,9 +5,9 @@
 #include "combat.h"
 #include "items.h"
 
-typedef struct Enemy Enemy;
+typedef struct M_Enemy ArenaEnemy;
 
-struct Enemy
+struct M_Enemy
 {
     int life;
     int maxLife;
@@ -16,5 +16,7 @@ struct Enemy
     ItemID inventory[MAX_INV_SIZE];
     CombatWheel MyCombatWheel;
 };
+
+ArenaEnemy ArenaEnemies[ENEMY_COUNT];
 
 #endif

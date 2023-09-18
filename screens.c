@@ -4,7 +4,10 @@
 #include "raylib.h"
 #include "load.h"
 #include "sprites.h"
+#include "canvas.h"
 #include <tmx.h>
+
+#include "math.h"
 
 const int screenWidth = 1280;
 const int screenHeight = 1024;
@@ -16,7 +19,6 @@ void SetActiveScreen(void (*screen)()){
 void UpdateScreen(){
     if (activeScreen != NULL)
         (*activeScreen)();
-    //printf("No active screen\n");
 }
 
 void mainMenu(){
@@ -24,9 +26,9 @@ void mainMenu(){
     Texture2D* background = GetTexture(Texture_torre); 
     static Vector2 img = {0,0};//VALOR ONDE A IMAGEM DO FUNDO VAI INICIAR
     static int subir = 1;
-    float tamanho = (float) screenWidth/ (float)background->width; 
+    float tamanho = (float) screenWidth / (float)background->width; 
 
-    if ((img.y <= -300)&& (subir == 1)){
+    if ((img.y <= -(background->height)/2)&& (subir == 1)){
         subir = 2;
     }
     if ((img.y >= 0) && (subir == 2)){
@@ -63,15 +65,19 @@ void mainMenu(){
     
     
     if(selecao==0){
-    DrawCircle(400, 500, 105, MAGENTA);
-    DrawCircle(650, 500, 105, BLUE);
-    DrawCircle(900, 500, 105, BLUE);
-    DrawCircle(400, 500, 100, VIOLET);
-    DrawCircle(650, 500, 100, DARKBLUE); 
-    DrawCircle(900, 500, 100, DARKBLUE);
-    DrawText("PLAY",345, 490, 40, WHITE);
-    DrawText("CREDITS",557, 490, 40, SKYBLUE);
-    DrawText("EXIT",850, 490, 40, SKYBLUE);
+    DrawPropCircle(0.3, 0.5, 105, MAGENTA);
+    DrawPropCircle(0.3, 0.5, 100, VIOLET);
+
+    DrawPropCircle(0.5, 0.5, 105, BLUE);
+    DrawPropCircle(0.5, 0.5, 100, BLUE);
+
+    DrawPropCircle(0.7, 0.5, 105, BLUE);
+    DrawPropCircle(0.7, 0.5, 100, BLUE);
+
+    DrawPropCenteredText("PLAY",0.3, 0.5, 40, WHITE);
+    DrawPropCenteredText("CREDITS",0.5, 0.5, 40, SKYBLUE);
+    DrawPropCenteredText("EXIT",0.7, 0.5, 40, SKYBLUE);
+
     }
     if(selecao==1){
     DrawCircle(400, 500, 105, BLUE);
@@ -187,20 +193,21 @@ void battleMenu(){
         if(i == selecao){
             cor = BLUE; // Muda a cor do retangulo selecionado
         }
-        DrawRectangle(130 * i + 50, 550, 100, 100, cor);
+        DrawRectangle(130 * i + 50, 850, 100, 100, cor);
     }
-    DrawRectangleLines(40, 510, 1180, 200, BLUE);
-    DrawRectangle(400, 50, 480, 100, DARKBLUE); // pontos
-    DrawRectangle(1000,170, 200, 270, DARKBLUE);
-    DrawRectangle(830,250, 150, 150, DARKBLUE);
-    DrawRectangle(265, 250, 150, 150, DARKBLUE); // oq vai aparecer o personagem 
-    DrawRectangle(40, 170, 200, 270, DARKBLUE); // maior do canto
+    DrawRectangleLines(40, 810, 1180, 200, BLUE);
+    DrawRectangle(400, 400, 480, 100, DARKBLUE); // pontos
+    DrawRectangle(1000,470, 200, 270, DARKBLUE);
+    DrawRectangle(830,550, 150, 150, DARKBLUE);
+    DrawRectangle(265, 550, 150, 150, DARKBLUE); // oq vai aparecer o personagem 
+    DrawRectangle(40, 470, 200, 270, DARKBLUE); // maior do canto
+    
 }
 
 void mapCanvas(){
     static int started = 0;
     
-    tmx_map *map = GetMap(Map_fase4);
+    tmx_map *map = GetMap(Map_fase11);
 
 	if (!map) {
 		tmx_perror("Cannot load map");

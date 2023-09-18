@@ -22,7 +22,7 @@ State GameState = Menu;
 void mainWindow(){
 	int monitor = GetCurrentMonitor();
 
-    //SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1280,720, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault - n dá mais ??
 	int maxHeight = GetMonitorHeight(monitor) - 40;
 	if (GetScreenHeight() > maxHeight)
@@ -58,10 +58,10 @@ int main () {
         BeginDrawing();
         ClearBackground(BLACK);
 
-        UpdateScreen();
+        //UpdateScreen();
 
         //mainMenu();
-        //mapCanvas();
+        mapCanvas();
         //FoundEnemyCanvas();
         //battleMenu();
 
@@ -82,6 +82,10 @@ void QuitApplication() {
 void UpdateMenu() {
     if (IsKeyPressed(KEY_ESCAPE)) {
         QuitApplication();
+    }
+
+    if (IsKeyPressed(KEY_F11)){
+        ToggleFullscreen();
     }
 }
 
