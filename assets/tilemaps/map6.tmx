@@ -157,12 +157,12 @@
   </object>
  </objectgroup>
  <objectgroup id="7" name="Portas">
-  <object id="30" name="Porta IX" x="480" y="128" width="96" height="128">
+  <object id="30" name="Porta_IX" x="480" y="128" width="96" height="128">
    <properties>
     <property name="porta" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="31" name="Porta I" x="480" y="864" width="96" height="64">
+  <object id="31" name="Porta_I" x="480" y="864" width="96" height="64">
    <properties>
     <property name="porta" type="bool" value="true"/>
    </properties>
