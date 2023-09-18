@@ -54,7 +54,7 @@ void DrawCenteredRectangle(int posX, int posY, int width, int height, Color colo
 
 int main(){
     const int screenWidth = 1280;
-    const int screenHeight = 1024;
+    const int screenHeight = 720;
     float tamanho = 0;
       
     int selecao = 0;//(0 é Play) (1 é creditos) (2 é exit)
@@ -71,7 +71,7 @@ int main(){
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        if ((img.y <= -300)&& (subir == 1)){
+        if ((img.y <= -400)&& (subir == 1)){
             subir = 2;
         }
         if ((img.y >= 0) && (subir == 2)){
@@ -120,16 +120,14 @@ int main(){
                 if(i == selecao){
                     cor = DARKBLUE; // Muda a cor do retângulo selecionado
                 }
-                DrawRectangle(350 * i + 350, 860, 250, 100, cor);
+                DrawPropRectangle(0.3 * i + 0.25, 0.73, 250, 100, cor);
             }
-            //DrawRectangleLines(40, 620, 1180, 300, BLUE);
-            DrawRectangle(40, 620, 450, 100, VIOLET);
-            DrawText("Texto:",60, 780, 35, VIOLET); // isa vai escrever e posicionar
-            DrawText("RUN",430, 895, 40, WHITE);
-            DrawText("FIGHT",770, 895, 40, WHITE);
-            DrawText("or",630, 889, 35, BLACK);
-            DrawRectangleLines(40, 720, 1180, 300, VIOLET);
-            DrawRectangle(950, 400, 230, 260, VIOLET);
+            DrawPropRectangle(0.03, 0.39, 450, 100, VIOLET);
+            DrawPropCenteredText("RUN",0.34, 0.8, 40, WHITE);
+            DrawPropCenteredText("FIGHT",0.65, 0.8, 40, WHITE);
+            DrawPropCenteredText("or",0.5, 0.8, 35, BLACK);
+            DrawPropRectangle(0.77, 0.13, 230, 260, VIOLET);
+            DrawRectangleLines(GetScreenWidth() * 0.03, GetScreenHeight() * 0.53, 1180, 300, VIOLET);
             
             
             EndDrawing();
@@ -147,37 +145,37 @@ int main(){
          
             
             if(selecao==0){
-            DrawCircle(400, 700, 105, MAGENTA);
-            DrawCircle(650, 700, 105, BLUE);
-            DrawCircle(900, 700, 105, BLUE);
-            DrawCircle(400, 700, 100, VIOLET);
-            DrawCircle(650, 700, 100, DARKBLUE); 
-            DrawCircle(900, 700, 100, DARKBLUE);
-            DrawText("PLAY",345, 690, 40, WHITE);
-            DrawText("CREDITS",557, 690, 40, SKYBLUE);
-            DrawText("EXIT",850, 690, 40, SKYBLUE);
+            DrawPropCircle(0.3, 0.5, 105, MAGENTA);
+            DrawPropCircle(0.5, 0.5, 105, BLUE);
+            DrawPropCircle(0.7, 0.5, 105, BLUE);
+            DrawPropCircle(0.3, 0.5, 100, VIOLET);
+            DrawPropCircle(0.5, 0.5, 100, DARKBLUE); 
+            DrawPropCircle(0.7, 0.5, 100, DARKBLUE);
+            DrawPropCenteredText("PLAY",0.3, 0.5, 40, WHITE);
+            DrawPropCenteredText("CREDITS",0.5, 0.5, 40, SKYBLUE);
+            DrawPropCenteredText("EXIT",0.7, 0.5, 40, SKYBLUE);
             }
             if(selecao==1){
-            DrawCircle(400, 700, 105, BLUE);
-            DrawCircle(650, 700, 105, MAGENTA);
-            DrawCircle(900, 700, 105, BLUE);
-            DrawCircle(400, 700, 100, DARKBLUE);
-            DrawCircle(650, 700, 100, VIOLET); 
-            DrawCircle(900, 700, 100, DARKBLUE);
-            DrawText("PLAY",345, 690, 40, SKYBLUE);
-            DrawText("CREDITS",557, 690, 40, WHITE);
-            DrawText("EXIT",850, 690, 40, SKYBLUE);
+            DrawPropCircle(0.3, 0.5, 105, BLUE);
+            DrawPropCircle(0.5, 0.5, 105, MAGENTA);
+            DrawPropCircle(0.7, 0.5, 105, BLUE);
+            DrawPropCircle(0.3, 0.5, 100, DARKBLUE);
+            DrawPropCircle(0.5, 0.5, 100, VIOLET); 
+            DrawPropCircle(0.7, 0.5, 100, DARKBLUE);
+            DrawPropCenteredText("PLAY",0.3, 0.5, 40, SKYBLUE);
+            DrawPropCenteredText("CREDITS",0.5, 0.5, 40, WHITE);
+            DrawPropCenteredText("EXIT",0.7, 0.5, 40, SKYBLUE);
             }
             if(selecao==2){
-            DrawCircle(400, 700, 105, BLUE);
-            DrawCircle(650, 700, 105, BLUE);
-            DrawCircle(900, 700, 105, MAGENTA);
-            DrawCircle(400, 700, 100, DARKBLUE);
-            DrawCircle(650, 700, 100, DARKBLUE); 
-            DrawCircle(900, 700, 100, VIOLET);
-            DrawText("PLAY",345, 690, 40, SKYBLUE);
-            DrawText("CREDITS",557, 690, 40, SKYBLUE);
-            DrawText("EXIT",850, 690, 40, WHITE);
+            DrawPropCircle(0.3, 0.5, 105, BLUE);
+            DrawPropCircle(0.5, 0.5, 105, BLUE);
+            DrawPropCircle(0.7, 0.5, 105, MAGENTA);
+            DrawPropCircle(0.3, 0.5, 100, DARKBLUE);
+            DrawPropCircle(0.5, 0.5, 100, DARKBLUE); 
+            DrawPropCircle(0.7, 0.5, 100, VIOLET);
+            DrawPropCenteredText("PLAY",0.3, 0.5, 40, SKYBLUE);
+            DrawPropCenteredText("CREDITS",0.5, 0.5, 40, SKYBLUE);
+            DrawPropCenteredText("EXIT",0.7, 0.5, 40, WHITE);
             }
         EndDrawing();
     }
