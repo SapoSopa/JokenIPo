@@ -13,7 +13,7 @@
 #define TO_LOAD_TEXTURES 2
 #define TO_LOAD_SOUNDS 3
 #define TO_LOAD_MUSICS 3
-#define TO_LOAD_MAPS 4
+#define TO_LOAD_MAPS 11
 
 static Texture GameTextures[TO_LOAD_TEXTURES];
 static Sound GameSounds[TO_LOAD_SOUNDS];
@@ -36,11 +36,17 @@ static char musicsToLoad[TO_LOAD_MUSICS][100] = {
     "assets/musics/music3.ogg"
 };
 static char mapsToLoad[TO_LOAD_MAPS][100] = {
-    "assets/tilemaps/map.tmx",
     "assets/tilemaps/map1.tmx",
     "assets/tilemaps/map2.tmx",
     "assets/tilemaps/map3.tmx",
-    "assets/tilemaps/map4.tmx"
+    "assets/tilemaps/map4.tmx",
+    "assets/tilemaps/map5.tmx",
+    "assets/tilemaps/map6.tmx",
+    "assets/tilemaps/map7.tmx",
+    "assets/tilemaps/map8.tmx",
+    "assets/tilemaps/map9.tmx",
+    "assets/tilemaps/map10.tmx",
+    "assets/tilemaps/map11.tmx"
 };
 
 float loadProgress = 0.0f;

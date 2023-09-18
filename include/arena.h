@@ -6,10 +6,10 @@
 #include "enemy.h"
 #include "items.h"
 
-typedef struct Player Player;
+typedef struct M_Player ArenaPlayer;
 typedef struct Arena Arena;
 
-struct Player
+struct M_Player
 {
     int life;
     int maxLife;
@@ -31,8 +31,8 @@ struct Arena
 
     // maybe create a queue of arena effects
 
-    Player *player;
-    Enemy *enemy;
+    ArenaPlayer *player;
+    ArenaEnemy *enemy;
 
     Choice playerSelectedOption;
     Choice enemySelectedOption;
@@ -44,8 +44,8 @@ struct Arena
     int enemyItemCooldown;
 };
 
-int ArenaConstructor(Arena *ambient, Player *player, Enemy *enemy);
-int PlayerConstructor(Player *player);
+int ArenaConstructor(Arena *ambient, ArenaPlayer *player, ArenaEnemy *enemy);
+int PlayerConstructor(ArenaPlayer *player);
 
 int nextRound(Arena *arena);   // next round
 int UpdateArena(Arena *arena); // update ambient

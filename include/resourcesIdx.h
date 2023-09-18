@@ -39,5 +39,12 @@
 #define Map_fase3 2
 #define Map_fase4 3
 #define Map_fase5 4
+#define Map_fase6 5
+#define Map_fase7 6
+#define Map_fase8 7
+#define Map_fase9 8
+#define Map_fase10 9
+#define Map_fase11 10
+#define Map_fase12 11
 
 #endif

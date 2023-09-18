@@ -52,6 +52,6 @@ struct CombatWheel
     WheelOption options[9];
 };
 
-int CombatWheelConstructor(CombatWheel *combatWheel);
+void CombatWheelConstructor(CombatWheel *combatWheel);
 
 #endif
