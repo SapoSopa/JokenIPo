@@ -3,20 +3,13 @@
 
 // musics index
 
-#define music_main 0
-#define music_second 1
-#define music_map1 2
-#define music_map2 3
-#define music_map3 4
-#define music_map4 5
-#define music_map5 6
-#define music_map6 7
-#define music_map7 8
-#define music_map8 9
-#define music_map9 10
-#define music_map10 11
-#define music_map11 12
-#define music_end 13
+#define music_main 0 // musica principal
+#define music_second 1 // musica secundaria (literalmente secundaria, so se quiser usar)
+#define music_boss1 2
+#define music_boss2 3
+#define music_boss3 4
+#define music_finalBoss 5
+#define music_end 6 // musica final
 
 // sounds index
 
