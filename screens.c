@@ -63,48 +63,45 @@ void mainMenu(){
     //COLOCANDO A IMAGEM DE BACKGROUND ANTES DE DESENHAR TODOS OS CIRCULOS
     DrawTextureEx((*background), img,0 , tamanho, GRAY);
     
-    
+
     if(selecao==0){
-    DrawPropCircle(0.3, 0.5, 105, MAGENTA);
-    DrawPropCircle(0.3, 0.5, 100, VIOLET);
-
-    DrawPropCircle(0.5, 0.5, 105, BLUE);
-    DrawPropCircle(0.5, 0.5, 100, BLUE);
-
-    DrawPropCircle(0.7, 0.5, 105, BLUE);
-    DrawPropCircle(0.7, 0.5, 100, BLUE);
-
-    DrawPropCenteredText("PLAY",0.3, 0.5, 40, WHITE);
-    DrawPropCenteredText("CREDITS",0.5, 0.5, 40, SKYBLUE);
-    DrawPropCenteredText("EXIT",0.7, 0.5, 40, SKYBLUE);
-
+        DrawPropCircle(0.3, 0.5, 105, MAGENTA);
+        DrawPropCircle(0.5, 0.5, 105, BLUE);
+        DrawPropCircle(0.7, 0.5, 105, BLUE);
+        DrawPropCircle(0.3, 0.5, 100, VIOLET);
+        DrawPropCircle(0.5, 0.5, 100, DARKBLUE); 
+        DrawPropCircle(0.7, 0.5, 100, DARKBLUE);
+        DrawPropCenteredText("PLAY",0.3, 0.5, 40, WHITE);
+        DrawPropCenteredText("CREDITS",0.5, 0.5, 40, SKYBLUE);
+        DrawPropCenteredText("EXIT",0.7, 0.5, 40, SKYBLUE);
     }
     if(selecao==1){
-    DrawCircle(400, 500, 105, BLUE);
-    DrawCircle(650, 500, 105, MAGENTA);
-    DrawCircle(900, 500, 105, BLUE);
-    DrawCircle(400, 500, 100, DARKBLUE);
-    DrawCircle(650, 500, 100, VIOLET); 
-    DrawCircle(900, 500, 100, DARKBLUE);
-    DrawText("PLAY",345, 490, 40, SKYBLUE);
-    DrawText("CREDITS",557, 490, 40, WHITE);
-    DrawText("EXIT",850, 490, 40, SKYBLUE);
+        DrawPropCircle(0.3, 0.5, 105, BLUE);
+        DrawPropCircle(0.5, 0.5, 105, MAGENTA);
+        DrawPropCircle(0.7, 0.5, 105, BLUE);
+        DrawPropCircle(0.3, 0.5, 100, DARKBLUE);
+        DrawPropCircle(0.5, 0.5, 100, VIOLET); 
+        DrawPropCircle(0.7, 0.5, 100, DARKBLUE);
+        DrawPropCenteredText("PLAY",0.3, 0.5, 40, SKYBLUE);
+        DrawPropCenteredText("CREDITS",0.5, 0.5, 40, WHITE);
+        DrawPropCenteredText("EXIT",0.7, 0.5, 40, SKYBLUE);
     }
     if(selecao==2){
-    DrawCircle(400, 500, 105, BLUE);
-    DrawCircle(650, 500, 105, BLUE);
-    DrawCircle(900, 500, 105, MAGENTA);
-    DrawCircle(400, 500, 100, DARKBLUE);
-    DrawCircle(650, 500, 100, DARKBLUE); 
-    DrawCircle(900, 500, 100, VIOLET);
-    DrawText("PLAY",345, 490, 40, SKYBLUE);
-    DrawText("CREDITS",557, 490, 40, SKYBLUE);
-    DrawText("EXIT",850, 490, 40, WHITE);
+        DrawPropCircle(0.3, 0.5, 105, BLUE);
+        DrawPropCircle(0.5, 0.5, 105, BLUE);
+        DrawPropCircle(0.7, 0.5, 105, MAGENTA);
+        DrawPropCircle(0.3, 0.5, 100, DARKBLUE);
+        DrawPropCircle(0.5, 0.5, 100, DARKBLUE); 
+        DrawPropCircle(0.7, 0.5, 100, VIOLET);
+        DrawPropCenteredText("PLAY",0.3, 0.5, 40, SKYBLUE);
+        DrawPropCenteredText("CREDITS",0.5, 0.5, 40, SKYBLUE);
+        DrawPropCenteredText("EXIT",0.7, 0.5, 40, WHITE);
     }
 }
 
 void FoundEnemyCanvas(){
     static int selecao = 0;
+    // Update
     if(IsKeyPressed(KEY_LEFT)&&(selecao>0)){
         selecao--;
     }
@@ -122,22 +119,22 @@ void FoundEnemyCanvas(){
         }
     }
 
-    // Draw
+    ClearBackground(WHITE);
+    
     // Ajuste a posição e tamanho dos retângulos
     for(int i = 0; i < 2; i++){
         Color cor = VIOLET;
         if(i == selecao){
             cor = DARKBLUE; // Muda a cor do retângulo selecionado
         }
-        DrawRectangle(350 * i + 350, 860, 250, 100, cor);
+        DrawPropRectangle(0.3 * i + 0.25, 0.73, 250, 100, cor);
     }
-    DrawRectangle(40, 620, 450, 100, VIOLET);
-    DrawText("Texto:",60, 780, 35, VIOLET); // isa vai escrever e posicionar
-    DrawText("RUN",430, 895, 40, WHITE);
-    DrawText("FIGHT",770, 895, 40, WHITE);
-    DrawText("or",630, 889, 35, BLACK);
-    DrawRectangleLines(40, 720, 1180, 300, VIOLET);
-    DrawRectangle(950, 400, 230, 260, VIOLET);
+    DrawPropRectangle(0.03, 0.39, 450, 100, VIOLET);
+    DrawPropCenteredText("RUN",0.34, 0.8, 40, WHITE);
+    DrawPropCenteredText("FIGHT",0.65, 0.8, 40, WHITE);
+    DrawPropCenteredText("or",0.5, 0.8, 35, BLACK);
+    DrawPropRectangle(0.77, 0.13, 230, 260, VIOLET);
+    DrawRectangleLines(GetScreenWidth() * 0.03, GetScreenHeight() * 0.53, 1180, 300, VIOLET);
 }
 
 void battleMenu(){
@@ -193,14 +190,15 @@ void battleMenu(){
         if(i == selecao){
             cor = BLUE; // Muda a cor do retangulo selecionado
         }
-        DrawRectangle(130 * i + 50, 850, 100, 100, cor);
+        DrawPropRectangle(0.101 * i + 0.05, 0.72, 100, 100, cor);
     }
-    DrawRectangleLines(40, 810, 1180, 200, BLUE);
-    DrawRectangle(400, 400, 480, 100, DARKBLUE); // pontos
-    DrawRectangle(1000,470, 200, 270, DARKBLUE);
-    DrawRectangle(830,550, 150, 150, DARKBLUE);
-    DrawRectangle(265, 550, 150, 150, DARKBLUE); // oq vai aparecer o personagem 
-    DrawRectangle(40, 470, 200, 270, DARKBLUE); // maior do canto
+    DrawPropRectangle(0.3, 0.03, 480, 100, DARKBLUE); // pontos
+    DrawPropRectangle(0.795,0.18, 200, 270, DARKBLUE);
+    DrawPropRectangle(0.64,0.3, 150, 150, DARKBLUE);
+    DrawPropRectangle(0.22, 0.3, 150, 150, DARKBLUE); // oq vai aparecer o personagem 
+    DrawPropRectangle(0.03, 0.18, 200, 270, DARKBLUE); // maior do canto
+    DrawRectangleLines(GetScreenWidth() * 0.03, GetScreenHeight() * 0.65, 1180, 200, BLUE);
+    EndDrawing();
     
 }
 
