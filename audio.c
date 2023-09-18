@@ -2,7 +2,6 @@
 #include "include/resourcesIdx.h"
 
 #include "stdio.h"
-
 #include "raylib.h"
 
 typedef struct {
@@ -17,6 +16,30 @@ typedef struct {
 
 static NameSound sounds[11];
 static NameMusic musics[7]; // definindo o tamanho ainda
+
+static char audios[11][100] = {
+    "assets/audios/door.mp3",
+    "assets/audios/death.mp3",
+    "sassets/audios/fire.mp3",
+    "assets/audios/scissors.mp3",
+    "assets/audios/paper.mp3",
+    "assets/audios/rock.mp3",
+    "assets/audios/gun.mp3",
+    "assets/audios/water.mp3",
+    "assets/audios/sponge.mp3",
+    "assets/audios/hit.mp3",
+    "assets/audios/air.mp3"
+};
+
+static char songs[7][100] = {
+    "assets/musicas/Strength of the Titans.mp3",
+    "assets/musicas/Gerudo Valley.mp3",
+    "assets/musicas/The Edge of Green.mp3",
+    "assets/musicas/At Doom's Gate.mp3",
+    "assets/musicas/Find the Flame.mp3",
+    "assets/musicas/To Sail Forbidden Seas.mp3",
+    "assets/musicas/Final Game.mp3"
+};
 
 static int soundsLen = 0;
 static int musicsLen = 0;
@@ -81,19 +104,6 @@ void PlaySoundIdx(int soundIdx){
 
 void LoadSoundFile(const char *fileName) {
     FILE *file = fopen(fileName, "r");
-    char audios[11][100] = {
-        "assets/audios/door.mp3",
-        "assets/audios/death.mp3",
-        "sassets/audios/fire.mp3",
-        "assets/audios/scissors.mp3",
-        "assets/audios/paper.mp3",
-        "assets/audios/rock.mp3",
-        "assets/audios/gun.mp3",
-        "assets/audios/water.mp3",
-        "assets/audios/sponge.mp3",
-        "assets/audios/hit.mp3",
-        "assets/audios/air.mp3"
-    };
     while(!feof(file)){
         fscanf(file, " %99[^\n]", sounds[soundsLen].name);
         sounds[soundsLen].sound = LoadSound(audios[soundsLen]);
@@ -107,15 +117,6 @@ void LoadSoundFile(const char *fileName) {
 // incompleto
 void LoadMusicFile(const char *fileName) {
     FILE *file = fopen(fileName, "r");
-    char songs[6][100] = {
-        "assets/musicas/Strength of the Titans.mp3",
-        "assets/musicas/Gerudo Valley.mp3",
-        "assets/musicas/The Edge of Green.mp3",
-        "assets/musicas/At Doom's Gate.mp3",
-        "assets/musicas/Find the Flame.mp3",
-        "assets/musicas/To Sail Forbidden Seas.mp3"
-    // falta adicionar a musica final
-    };
     while(!feof(file)){
         fscanf(file, " %99[^\n]", musics[musicsLen].name);
         musics[musicsLen].music = LoadMusicStream(songs[musicsLen]);
