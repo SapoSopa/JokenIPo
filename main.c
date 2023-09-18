@@ -20,7 +20,14 @@ enum GameStates {
 State GameState = Menu;
 
 void mainWindow(){
-    InitWindow(1280,1024, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault
+	int monitor = GetCurrentMonitor();
+
+    //SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    InitWindow(1280,720, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault - n dá mais ??
+	int maxHeight = GetMonitorHeight(monitor) - 40;
+	if (GetScreenHeight() > maxHeight)
+		SetWindowSize(GetScreenWidth(), maxHeight);
+
     SetTargetFPS(60);
     //ToggleFullscreen();
 }

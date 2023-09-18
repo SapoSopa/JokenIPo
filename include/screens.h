@@ -1,4 +1,6 @@
 #pragma once
+
+#include <raylib.h>
 #include <stdio.h>
 
 static void (*activeScreen)() = NULL;
