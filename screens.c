@@ -125,7 +125,6 @@ void FoundEnemyCanvas(){
         }
         DrawRectangle(350 * i + 350, 860, 250, 100, cor);
     }
-    //DrawRectangleLines(40, 620, 1180, 300, BLUE);
     DrawRectangle(40, 620, 450, 100, VIOLET);
     DrawText("Texto:",60, 780, 35, VIOLET); // isa vai escrever e posicionar
     DrawText("RUN",430, 895, 40, WHITE);
@@ -146,31 +145,31 @@ void battleMenu(){
     if(IsKeyPressed(KEY_ENTER)){
         switch(selecao){
             case 1:
-                //item 1
+                //pers 1
                 break;
             case 2:
-                //item 2
+                //pers 2
                 break;
             case 3:
-                //item 3
+                //pers 3
                 break;
             case 4:
-                //item 4
+                //pers 4
                 break;
             case 5:
-                //item 5
+                //pers 5
                 break;
             case 6:
-                //item 6
+                //pers 6
                 break;
             case 7: 
-                //item 7
+                //pers 7
                 break;
             case 8:
-                //item 6
+                //pers 8
                 break;
             case 9: 
-                //item 7
+                //pers 9
                 break;       
         }
     }
@@ -207,6 +206,6 @@ void mapCanvas(){
 		tmx_perror("Cannot load map");
         return;
 	}
-
+	
     render_map(map);
 }
