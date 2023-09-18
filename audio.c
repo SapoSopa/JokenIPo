@@ -108,12 +108,12 @@ void LoadSoundFile(const char *fileName) {
 void LoadMusicFile(const char *fileName) {
     FILE *file = fopen(fileName, "r");
     char songs[6][100] = {
-        "assets/audios/Gerudo Valley.mp3",
-        "assets/audios/Strength of the Titans.mp3",
-        "assets/audios/Stellar Escape.mp3",
-        "assets/audios/Magic Escape Room.mp3",
-        "assets/audios/Last Battle.mp3",
-        "assets/audios/Southern Gothic.mp3"
+        "assets/musicas/Strength of the Titans.mp3",
+        "assets/musicas/Gerudo Valley.mp3",
+        "assets/musicas/The Edge of Green.mp3",
+        "assets/musicas/At Doom's Gate.mp3",
+        "assets/musicas/Find the Flame.mp3",
+        "assets/musicas/To Sail Forbidden Seas.mp3"
     };
     while(!feof(file)){
         fscanf(file, " %99[^\n]", musics[musicsLen].name);
