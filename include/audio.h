@@ -10,7 +10,7 @@ void PauseMusic(); // pauses music
 void UpdateMusic();
 void PlaySoundIdx(int soundIdx); // play a sound that could be identified by a index
 // to change the master volume, use SetMasterVolume(float volume)
-void ChangeMusicVolume(float volume,); // change all musics volume
+void ChangeMusicVolume(float volume); // change all musics volume
 void ChangeSoundEffectVolume(float volume); // change all sound effects volume
 void ResumeMusic(int musicIDX); // resume a paused music
 void LoadSoundFile(const char *fileName); // load sound and save in dynamic array of sounds

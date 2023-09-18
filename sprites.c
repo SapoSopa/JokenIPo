@@ -5,7 +5,7 @@
 #include <raylib.h>
 #include <string.h>
 
-// #define ANIMATION
+#define ANIMATION
 
 void *raylib_tex_loader(const char *path) {
 	Texture2D *returnValue = malloc(sizeof(Texture2D));
@@ -74,34 +74,62 @@ void draw_tile(void *image, unsigned int sx, unsigned int sy, unsigned int sw, u
     Texture2D *texture = (Texture2D*)image;
     int op = 0xFF * opacity;
 
-	Vector2 myOriginCorner = {0, 0};
-/* 	if ((flags & TMX_FLIPPED_VERTICALLY)){
-		myOriginCorner.y += -sprite_height;
-	} */
-/* 	if ((flags & TMX_FLIPPED_HORIZONTALLY)){
-		myOriginCorner.x += sprite_width;
-	} */
-/* 	if ((flags & TMX_FLIPPED_DIAGONALLY)){
-		myOriginCorner.x += sprite_width;
-		myOriginCorner.y += sprite_height;
-	}
-	 */
+	Rectangle sourceRect = {sx, sy, sw, sh};
+	Rectangle destRect = {dx, dy, sw, sh};
+	Vector2 origin = {0.0, 0.0};
+	float rotation = 0.0;
 
-	if ((flags & ~TMX_FLIP_BITS_REMOVAL) == 0){
-    	DrawTextureRec(*texture, (Rectangle) {sx, sy, sw, sh}, (Vector2) {dx, dy}, (Color) {op, op, op, op});
+	switch (flags)
+	{
+	case TMX_FLIPPED_DIAGONALLY:
+		sourceRect.height *= -1;
+		rotation = 90.0;
+		break;
+	case TMX_FLIPPED_VERTICALLY:
+		sourceRect.height *= -1;
+		break;
+	case TMX_FLIPPED_VERTICALLY | TMX_FLIPPED_DIAGONALLY:
+		rotation = -90.0;
+		break;
+	case TMX_FLIPPED_HORIZONTALLY:
+		sourceRect.width *= -1;
+		break;
+	case TMX_FLIPPED_HORIZONTALLY | TMX_FLIPPED_DIAGONALLY:
+		rotation = 90.0;
+		break;
+	case TMX_FLIPPED_HORIZONTALLY | TMX_FLIPPED_VERTICALLY:
+		rotation = 180.0;
+		break;
+	case TMX_FLIPPED_HORIZONTALLY | TMX_FLIPPED_VERTICALLY | TMX_FLIPPED_DIAGONALLY:
+		sourceRect.width *= -1;
+		rotation = -90.0;
+		break;
+	default:
+		origin.x = 0.0;
+		origin.y = 0.0;
+		rotation = 0.0;
+		break;
 	}
-  	else if (flags & TMX_FLIPPED_HORIZONTALLY) {
-		DrawTexturePro(*texture, (Rectangle) {sx, sy, sw, sh}, (Rectangle) {dx, dy, sw, sh}, (Vector2) {0,0}, 0, (Color) {op, op, op, op});
-	} 
- 	else if (flags & TMX_FLIPPED_VERTICALLY && flags & !TMX_FLIPPED_DIAGONALLY) {
-		DrawTexturePro(*texture, (Rectangle) {sx, sy, sw, sh}, (Rectangle) {dx, dy, sw, sh}, myOriginCorner, 180, (Color) {op, op, op, op});
-	}  
-/* 	else if (flags & TMX_FLIPPED_DIAGONALLY) {
-		DrawTexturePro(*texture, (Rectangle) {sx, sy, sw, sh}, (Rectangle) {dx, dy, sw, sh}, myOriginCorner, -90, (Color) {op, op, op, op});
-	} else {
-    	DrawTextureRec(*texture, (Rectangle) {sx, sy, sw, sh}, (Vector2) {dx, dy}, (Color) {op, op, op, op});
 
-	} */
+	if (rotation != 0.0) {
+		origin.x = sourceRect.width / 2.0;
+		origin.y = sourceRect.height / 2.0;
+		destRect.x += sourceRect.width / 2.0;
+		destRect.y += sourceRect.height / 2.0;
+	}
+
+	DrawTexturePro(*texture, sourceRect, destRect, origin, rotation, WHITE);
+}
+
+float actualTimeUpdate(int update){
+	static float timeCounter = 0;
+	if (update) {
+		if (timeCounter > 1e8) {
+			timeCounter = 0;
+		}
+		timeCounter += GetFrameTime();
+	}
+	return timeCounter;
 }
 
 void draw_layer(tmx_map *map, tmx_layer *layer) {
@@ -115,39 +143,31 @@ void draw_layer(tmx_map *map, tmx_layer *layer) {
 	op = layer->opacity;
 	tmx_tile *nextTile;
 
-	static float timeCounter = 0;
-	timeCounter += GetFrameTime();
-
-	if (timeCounter > 1e8) {
-		timeCounter = 0;
-	}
-
 	for (i=0; i<map->height; i++) {
 		for (j=0; j<map->width; j++) {
 			gid = (layer->content.gids[(i*map->width)+j]) & TMX_FLIP_BITS_REMOVAL;
 			nextTile = map->tiles[gid];
 			//printf("AnimGid before: %d\n", gid);
 
-			if (nextTile == NULL)  continue; 
-
+			if (nextTile == NULL)  continue; 			
 			im = nextTile->image;
 			anim = nextTile->animation;
 			animLen = nextTile->animation_len;
 			tmx_tileset *myTs = nextTile->tileset;
-
+			
             #ifdef ANIMATION
 			if (animLen > 0 && !im) {
 
-				printf("FrameTime: %f\n", GetFrameTime());
-				printf("My timeCounter: %f\n", timeCounter);
-				printf("My duration: %d\n", anim->duration); 
-				int myFrame = (int)((int) ((timeCounter*1000) / (anim->duration))) % (animLen);
+/* 				printf("FrameTime: %f\n", GetFrameTime());
+				printf("My timeCounter: %f\n", actualTimeUpdate(0));
+				printf("My duration: %d\n", anim->duration); */ 
+				int myFrame = (int) ((actualTimeUpdate(0)*1000.0) / (anim->duration)) % (animLen);
 
 				unsigned int AnimGid = (anim[myFrame].tile_id) & TMX_FLIP_BITS_REMOVAL;
- 				printf("AnimGid: %d\n", AnimGid);
+/*  				printf("AnimGid: %d\n", AnimGid);
 				printf("My animation Lenght: %d\n", animLen);
 				printf("My frame: %d\n", myFrame); 
-				
+				 */
 				if ((myTs->tiles) + AnimGid == NULL) {
 					printf("NULL tile\n");
 				}
@@ -169,7 +189,7 @@ void draw_layer(tmx_map *map, tmx_layer *layer) {
 				image = myTs->image->resource_image;
 			}
 
-			flags = (layer->content.gids[(i*map->width)+j]);
+			flags = (layer->content.gids[(i*map->width)+j]) & ~TMX_FLIP_BITS_REMOVAL;
 			draw_tile(image, x, y, w, h, j*myTs->tile_width, i*myTs->tile_height, op, flags);
 		}
 	}
@@ -196,6 +216,7 @@ void draw_all_layers(tmx_map *map, tmx_layer *layers) {
 }
 
 void render_map(tmx_map *map) {
+	actualTimeUpdate(1);
 	ClearBackground(int_to_color(map->backgroundcolor));
 	draw_all_layers(map, map->ly_head);
 }
