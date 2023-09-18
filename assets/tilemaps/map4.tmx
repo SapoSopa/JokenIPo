@@ -181,17 +181,17 @@
   </object>
  </objectgroup>
  <objectgroup id="8" name="Portas">
-  <object id="35" name="Porta VII" x="288" y="128" width="96" height="128">
+  <object id="35" name="Porta_VII" x="288" y="128" width="96" height="128">
    <properties>
     <property name="porta" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="37" name="Porta VIII" x="672" y="128" width="96" height="128">
+  <object id="37" name="Porta_VIII" x="672" y="128" width="96" height="128">
    <properties>
     <property name="porta" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="38" name="Porta I" x="512" y="832" width="96" height="64">
+  <object id="38" name="Porta_I" x="512" y="832" width="96" height="64">
    <properties>
     <property name="porta" type="bool" value="true"/>
    </properties>

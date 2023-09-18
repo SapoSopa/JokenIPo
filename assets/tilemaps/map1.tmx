@@ -217,22 +217,22 @@
   </object>
  </objectgroup>
  <objectgroup id="14" name="Portas">
-  <object id="169" name="Porta II" x="256" y="96" width="96" height="128">
+  <object id="169" name="Porta_II" x="256" y="96" width="96" height="128">
    <properties>
     <property name="porta" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="170" name="Porta III" x="640" y="128" width="96" height="128">
+  <object id="170" name="Porta_III" x="640" y="128" width="96" height="128">
    <properties>
     <property name="porta" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="171" name="Porta III" x="1024" y="96" width="96" height="128">
+  <object id="171" name="Porta_IV" x="1024" y="96" width="96" height="128">
    <properties>
     <property name="porta" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="173" name="Porta I" x="608" y="832" width="96" height="96">
+  <object id="173" name="Porta_I" x="608" y="832" width="96" height="96">
    <properties>
     <property name="porta" type="bool" value="true"/>
    </properties>
