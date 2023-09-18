@@ -16,7 +16,7 @@ int main(void)
     Vector2 img = {0,0};
     SetTargetFPS(60);
     
-    ToggleFullscreen();
+    //ToggleFullscreen();
     // Main game loop
     while (!WindowShouldClose())
     {
@@ -69,14 +69,14 @@ int main(void)
                 if(i == selecao){
                     cor = BLUE; // Muda a cor do retangulo selecionado
                 }
-                DrawRectangle(130 * i + 50, 550, 100, 100, cor);
+                DrawRectangle(130 * i + 50, 850, 100, 100, cor);
             }
-            DrawRectangleLines(40, 510, 1180, 200, BLUE);
-            DrawRectangle(400, 50, 480, 100, DARKBLUE); // pontos
-            DrawRectangle(1000,170, 200, 270, DARKBLUE);
-            DrawRectangle(830,250, 150, 150, DARKBLUE);
-            DrawRectangle(265, 250, 150, 150, DARKBLUE); // oq vai aparecer o personagem 
-            DrawRectangle(40, 170, 200, 270, DARKBLUE); // maior do canto
+            DrawRectangleLines(40, 810, 1180, 200, BLUE);
+            DrawRectangle(400, 400, 480, 100, DARKBLUE); // pontos
+            DrawRectangle(1000,470, 200, 270, DARKBLUE);
+            DrawRectangle(830,550, 150, 150, DARKBLUE);
+            DrawRectangle(265, 550, 150, 150, DARKBLUE); // oq vai aparecer o personagem 
+            DrawRectangle(40, 470, 200, 270, DARKBLUE); // maior do canto
             
             EndDrawing();
     }
