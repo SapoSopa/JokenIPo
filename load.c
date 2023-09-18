@@ -89,7 +89,7 @@ void ToLoadSounds() {
     LoadSoundFile("/assets/audios/sounds.txt");
 }
 void ToLoadMusics() {
-    LoadMusicFile("/assets/audios/musics.txt");
+    LoadMusicFile("/assets/musicas/musics.txt");
 }
 
 int SaveGame() {
