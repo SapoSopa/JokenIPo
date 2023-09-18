@@ -2,6 +2,8 @@
 
 void DrawScreen(void (*screen)());
 
+void FoundEnemyCanvas();
+
 void mainMenu();
 
 void mapCanvas();

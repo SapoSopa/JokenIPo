@@ -164,7 +164,7 @@ void draw_layer(tmx_map *map, tmx_layer *layer) {
 				int myFrame = (int) ((actualTimeUpdate(0)*1000.0) / (anim->duration)) % (animLen);
 
 				unsigned int AnimGid = (anim[myFrame].tile_id) & TMX_FLIP_BITS_REMOVAL;
-/*  				printf("AnimGid: %d\n", AnimGid);
+/*  			printf("AnimGid: %d\n", AnimGid);
 				printf("My animation Lenght: %d\n", animLen);
 				printf("My frame: %d\n", myFrame); 
 				 */

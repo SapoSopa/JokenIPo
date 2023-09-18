@@ -20,7 +20,7 @@ enum GameStates {
 State GameState = Loading;
 
 void mainWindow(){
-    InitWindow(1280,1024,"JokenIPo"); //verificar pq 1280 e 1024 dá seg fault
+    InitWindow(1280,1024, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault
     SetTargetFPS(60);
     //ToggleFullscreen();
 }
@@ -28,7 +28,6 @@ void mainWindow(){
 int main () {
     mainWindow();
 
-    //ToggleFullscreen();
     // load somethings, temporaly here
     M_LoadMap();
     M_LoadTexture();
@@ -37,9 +36,10 @@ int main () {
     {
         BeginDrawing();
 
-        mainMenu();
-        //mapCanvas();
-
+        //mainMenu();
+        mapCanvas();
+        //FoundEnemyCanvas();
+        //battleMenu();
         EndDrawing();
     }
     UnloadResources();

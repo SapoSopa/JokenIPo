@@ -42,5 +42,9 @@
 // maps index
 
 #define Map_fase1 0
+#define Map_fase2 1
+#define Map_fase3 2
+#define Map_fase4 3
+#define Map_fase5 4
 
 #endif

@@ -85,10 +85,111 @@ void mainMenu(){
     }
 }
 
+void FoundEnemyCanvas(){
+    static int selecao = 0;
+    if(IsKeyPressed(KEY_LEFT)&&(selecao>0)){
+        selecao--;
+    }
+    if(IsKeyPressed(KEY_RIGHT)&&(selecao<1)){
+        selecao++;
+    }
+    if(IsKeyPressed(KEY_ENTER)){
+        switch(selecao){
+            case 1:
+                //item 1
+                break;
+            case 2:
+                //item 2
+                break;     
+        }
+    }
+
+    // Draw
+    // Ajuste a posição e tamanho dos retângulos
+    for(int i = 0; i < 2; i++){
+        Color cor = VIOLET;
+        if(i == selecao){
+            cor = DARKBLUE; // Muda a cor do retângulo selecionado
+        }
+        DrawRectangle(350 * i + 350, 860, 250, 100, cor);
+    }
+    //DrawRectangleLines(40, 620, 1180, 300, BLUE);
+    DrawRectangle(40, 620, 450, 100, VIOLET);
+    DrawText("Texto:",60, 780, 35, VIOLET); // isa vai escrever e posicionar
+    DrawText("RUN",430, 895, 40, WHITE);
+    DrawText("FIGHT",770, 895, 40, WHITE);
+    DrawText("or",630, 889, 35, BLACK);
+    DrawRectangleLines(40, 720, 1180, 300, VIOLET);
+    DrawRectangle(950, 400, 230, 260, VIOLET);
+}
+
+void battleMenu(){
+    static int selecao = 0;
+    if(IsKeyPressed(KEY_LEFT)&&(selecao>0)){
+        selecao--;
+    }
+    if(IsKeyPressed(KEY_RIGHT)&&(selecao<8)){
+        selecao++;
+    }
+    if(IsKeyPressed(KEY_ENTER)){
+        switch(selecao){
+            case 1:
+                //item 1
+                break;
+            case 2:
+                //item 2
+                break;
+            case 3:
+                //item 3
+                break;
+            case 4:
+                //item 4
+                break;
+            case 5:
+                //item 5
+                break;
+            case 6:
+                //item 6
+                break;
+            case 7: 
+                //item 7
+                break;
+            case 8:
+                //item 6
+                break;
+            case 9: 
+                //item 7
+                break;       
+        }
+    }
+
+    // Draw
+    Texture2D* background = GetTexture(Texture_torre); 
+    Vector2 img = {0,0};
+
+    DrawTextureV(*background,img , GRAY);
+    DrawTexturePro(*background, (Rectangle){ 0.0f, 0.0f, (float)background->width, (float)background->height }, 
+    (Rectangle){ 0, 0, screenWidth, screenHeight }, (Vector2){ 0, 0 }, 0.0f, WHITE); 
+
+    for(int i = 0; i < 9; i++){
+        Color cor = DARKBLUE;
+        if(i == selecao){
+            cor = BLUE; // Muda a cor do retangulo selecionado
+        }
+        DrawRectangle(130 * i + 50, 550, 100, 100, cor);
+    }
+    DrawRectangleLines(40, 510, 1180, 200, BLUE);
+    DrawRectangle(400, 50, 480, 100, DARKBLUE); // pontos
+    DrawRectangle(1000,170, 200, 270, DARKBLUE);
+    DrawRectangle(830,250, 150, 150, DARKBLUE);
+    DrawRectangle(265, 250, 150, 150, DARKBLUE); // oq vai aparecer o personagem 
+    DrawRectangle(40, 170, 200, 270, DARKBLUE); // maior do canto
+}
+
 void mapCanvas(){
     static int started = 0;
     
-    tmx_map *map = GetMap(Map_fase1);
+    tmx_map *map = GetMap(Map_fase4);
 
 	if (!map) {
 		tmx_perror("Cannot load map");
