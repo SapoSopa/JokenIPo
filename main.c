@@ -23,7 +23,7 @@ void mainWindow(){
 	int monitor = GetCurrentMonitor();
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(1280,720, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault - n dá mais ??
+    InitWindow(1280,1024, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault - n dá mais ??
 	int maxHeight = GetMonitorHeight(monitor) - 40;
 	if (GetScreenHeight() > maxHeight)
 		SetWindowSize(GetScreenWidth(), maxHeight);
@@ -39,6 +39,10 @@ void UpdateGame();
 int main () {
     mainWindow();
     SetActiveScreen(&mainMenu);
+    Rectangle Player = {0, 0, 32, 64};
+    tmx_map* map = GetMap(0);
+    int currentMap = 0;
+    UpdatePlayerPosition(map, &Player);
     // load somethings, temporaly here
     M_LoadMap();
     M_LoadTexture();
@@ -61,9 +65,12 @@ int main () {
         //UpdateScreen();
 
         //mainMenu();
-        mapCanvas();
+        mapCanvas(currentMap, map);
+        DrawRectangleRec(Player, RED);
+    
         //FoundEnemyCanvas();
         //battleMenu();
+    
 
         EndDrawing();
     }

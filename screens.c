@@ -6,6 +6,8 @@
 #include "sprites.h"
 #include "canvas.h"
 #include <tmx.h>
+#include "stdio.h"
+#include "string.h"
 
 #include "math.h"
 
@@ -202,15 +204,128 @@ void battleMenu(){
     
 }
 
-void mapCanvas(){
-    static int started = 0;
-    
-    tmx_map *map = GetMap(Map_fase11);
+void UpdatePlayerPosition(tmx_map *map, Rectangle *playerRect)
+{
+    printf("Procurando um lugar pro personagem\n");
+    tmx_layer *layer = NULL;
+    printf("Será se tem mapa?\n");
+    if(map)
+    {
+        printf("Tem mapa\n");
+        layer = map->ly_head;
+    }
+    bool achou = false;
+    printf("vamos ver as camadas \n");
+    while(layer && !achou)
+    {
+        printf("uma layer lida \n");
+        if (layer->visible)
+        {
+            printf("uma layer visivel \n");
+            if (layer->type == L_OBJGR && layer->name && strcmp(layer->name, "Pontos") == 0)
+            {
+                printf("uma layer de pontos \n");
+                if(layer->content.objgr)
+                {
+                    printf("uma layer de pontos com conteudo \n");
+                    tmx_object *obj = layer->content.objgr->head;
+                    while (obj && !achou)
+                    {
+                        printf("um objeto lido \n");
+                        if (obj->name && strcmp(obj->name, "Player") == 0)
+                        {
+                            printf("um objeto de player \n");
+                            playerRect->x = obj->x;
+                            playerRect->y = obj->y;
+                            achou = true;
+                        }
+                        obj = obj->next;
+                    }
+                }
+            }               
+        }
+        layer = layer->next;
+    }
+}
+
+int CheckWhereToGo (tmx_map *map, Rectangle *playerRect)
+{
+    tmx_layer *layer = NULL;
+    layer = map->ly_head;
+    bool achou = false;
+    while(layer && !achou)
+    {
+        if (layer->visible)
+        {
+            if (layer->type == L_OBJGR && strcmp(layer->name, "Portas") == 0)
+            {
+                tmx_object *obj = layer->content.objgr->head;
+                while (obj && !achou)
+                {
+                    if (CheckCollisionRecs(*playerRect, (Rectangle){obj->x, obj->y, obj->width, obj->height}))
+                    {
+                        if (strcmp(obj->name, "Porta_II"))
+                        {
+                            return Porta_II;
+                        }
+                        else if (strcmp(obj->name, "Porta_III"))
+                        {
+                            return Porta_III;
+                        }
+                        else if (strcmp(obj->name, "Porta_IV"))
+                        {
+                            return Porta_IV;
+                        }
+                        else if (strcmp(obj->name, "Porta_V"))
+                        {
+                            return Porta_V;
+                        }
+                        else if (strcmp(obj->name, "Porta_VI"))
+                        {
+                            return Porta_VI;
+                        }
+                        else if (strcmp(obj->name, "Porta_VII"))
+                        {
+                            return Porta_VII;
+                        }
+                        else if (strcmp(obj->name, "Porta_VIII"))
+                        {
+                            return Porta_VIII;
+                        }
+                        else if (strcmp(obj->name, "Porta_IX"))
+                        {
+                            return Porta_IX;
+                        }
+                        else if (strcmp(obj->name, "Porta_X"))
+                        {
+                            return Porta_X;
+                        }
+                        else if (strcmp(obj->name, "Porta_XI"))
+                        {
+                            return Porta_XI;
+                        }
+                    }
+                    obj = obj->next;
+                }
+            }               
+        }
+        layer = layer->next;
+    }
+}
+
+void UpdateMap(tmx_map *map, Rectangle *playerRect, int *currentMap)
+{
+    *currentMap = CheckWhereToGo(map, playerRect);
+    UpdatePlayerPosition(map, playerRect);
+}
+
+void mapCanvas (int i, tmx_map *map){
+    tmx_map_free(map);
+    map = GetMap(i);
 
 	if (!map) {
 		tmx_perror("Cannot load map");
         return;
 	}
-	
     render_map(map);
 }
