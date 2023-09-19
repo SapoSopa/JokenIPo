@@ -413,3 +413,22 @@ void PlayerControl(Rectangle *playerRect, tmx_map *map)
         playerRect->x -= 1;
     }
 }
+
+#include "canvas.h"
+#include "railyb.h"
+#define WHITE      (Color){ 255, 255, 255, 255 }
+
+void Creditos(){
+    BeginDrawing();
+    ClearBackGround(Black);
+    DrawPropCenteredText("Créditos:", 0.1, 0.1, 24, WHITE);
+     DrawPropCenteredText("Grupo 7", 0.1, 0.2, WHITE);
+     DrawPropCenteredText("João Miguel", 0.1, 0.3, WHITE);
+     DrawPropCenteredText("Heitor Melo", 0.1, 0.4, WHITE);
+     DrawPropCenteredText("Henrique Cesar", 0.1, 0.5, WHITE);
+     DrawPropCenteredText("Rodrigo Sampaio", 0.1, 0.6, WHITE);
+     DrawPropCenteredText("Milena Neves", 0.1, 0.7, WHITE);
+     DrawPropCenteredText("Isabela Lima", 0.1, 0.8, WHITE);
+    EndDrawing();
+}
+
