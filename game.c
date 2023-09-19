@@ -24,13 +24,12 @@ void StartBattle(ArenaEnemy *enemy) {
 }
 
 void StartPlaying(){
-    InBattle = False;
-    PlayerControl(&Player, map);
+    InBattle = false;
     SetActiveScreen(NULL);
 }
 
 void StartTutorial() {
-    InBattle = False;
+    InBattle = false;
     SetActiveScreen(&TutorialCanvas);
 }
 

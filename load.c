@@ -44,7 +44,7 @@ static char texturesToLoad[TO_LOAD_TEXTURES][100] = {
     "assets/textures/heart.png",
     "assets/textures/heart_empty.png",
     "assets/Personagens/Player/Começo.png",
-    "assets/Personagens/Pplayer.png",
+    "assets/Personagens/Player.png",
 };
 static char soundsToLoad[TO_LOAD_SOUNDS][100] = {
     "assets/audios/door.mp3",

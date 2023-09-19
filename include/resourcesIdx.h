@@ -37,6 +37,11 @@
 #define Texture_air 7
 #define Texture_water 8
 #define Texture_gun 9
+#define Texture_heart 10
+#define Texture_heart_empty 11
+#define Texture_Player_i 12
+#define Texture_Player 13
+
 
 // maps index
 

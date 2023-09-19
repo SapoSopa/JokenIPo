@@ -6,6 +6,7 @@
 #include "include/combat.h"
 #include "include/load.h"
 #include "include/screens.h"
+#include "include/resourcesIdx.h"
 
 typedef int State;
 enum GameStates {
@@ -24,6 +25,8 @@ typedef struct {
 } EnemyList;
 
 bool EnemyDefeated(tmx_map *map, Rectangle *playerRect, EnemyList *enemies);
+
+tmx_map** GetCurrentMap();
 
 int EnemyId(tmx_map *map, Rectangle *playerRect, EnemyList *enemies);
 
@@ -46,6 +49,7 @@ void mainWindow(){
 void QuitApplication();
 void UpdateMenu();
 void UpdateGame();
+void UpdateMovement();
 
 static  EnemyList enemies[16] = {{"Inimigo I", false},
                         {"Inimigo II", false},
@@ -78,6 +82,7 @@ int main () {
     // Player setup
     Rectangle Player = {0, 0, 32, 64};
     tmx_map* map = GetMap(1);
+    Texture2D *Ptexture = GetTexture(Texture_Player_i);
     int currentMap = 1;
     UpdatePlayerPosition(map, &Player);
     StartEnemies();
@@ -102,13 +107,13 @@ int main () {
         UpdateScreen();
         
         //mainMenu();
-     mapCanvas(currentMap, map);
+        mapCanvas(currentMap, map);
         if(IsKeyPressed(KEY_P))
         {
             printf("Currentmap agora é o map%d\n", currentMap+1);
         }
 
-        DrawRectangleRec(Player, RED);
+        DrawCenteredTexture(Ptexture, Player.x, Player.y, WHITE);
         
         if(!CheckObjgr(map, &Player, "Inimigos"))
         {
@@ -169,6 +174,16 @@ void UpdateGame() {
     }
 }
 
+void UpdateMovement()
+{
+ // PlayerControl(&Player, map);
+}
+
+tmx_map** GetCurrentMap() 
+{
+    static tmx_map* map = NULL;
+    return &map;
+}
 
 int EnemyId(tmx_map *map, Rectangle *playerRect, EnemyList *enemies)
 {

@@ -139,7 +139,7 @@ void FoundEnemyCanvas(){
     if(IsKeyPressed(KEY_ENTER)){
         switch(selecao){
             case 1:
-                StartBattle();
+                //StartBattle();
                 break;
             case 2:
                 StartPlaying();
@@ -421,21 +421,17 @@ void PlayerControl(Rectangle *playerRect, tmx_map *map)
     }
 }
 
-#include "canvas.h"
-#include "railyb.h"
-#define WHITE      (Color){ 255, 255, 255, 255 }
-
 void Creditos(){
     BeginDrawing();
-    ClearBackGround(Black);
+    ClearBackground(BLACK);
     DrawPropCenteredText("Créditos:", 0.1, 0.1, 24, WHITE);
-     DrawPropCenteredText("Grupo 7", 0.1, 0.2, WHITE);
-     DrawPropCenteredText("João Miguel", 0.1, 0.3, WHITE);
-     DrawPropCenteredText("Heitor Melo", 0.1, 0.4, WHITE);
-     DrawPropCenteredText("Henrique Cesar", 0.1, 0.5, WHITE);
-     DrawPropCenteredText("Rodrigo Sampaio", 0.1, 0.6, WHITE);
-     DrawPropCenteredText("Milena Neves", 0.1, 0.7, WHITE);
-     DrawPropCenteredText("Isabela Lima", 0.1, 0.8, WHITE);
+     DrawPropCenteredText("Grupo 7", 0.1, 0.2, 24, WHITE);
+     DrawPropCenteredText("João Miguel", 0.1, 0.3, 24, WHITE);
+     DrawPropCenteredText("Heitor Melo", 0.1, 0.4, 24, WHITE);
+     DrawPropCenteredText("Henrique Cesar", 0.1, 0.5, 24, WHITE);
+     DrawPropCenteredText("Rodrigo Sampaio", 0.1, 0.6, 24, WHITE);
+     DrawPropCenteredText("Milena Neves", 0.1, 0.7, 24, WHITE);
+     DrawPropCenteredText("Isabela Lima", 0.1, 0.8, 24, WHITE);
     EndDrawing();
 }
 
