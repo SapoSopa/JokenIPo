@@ -56,6 +56,7 @@ int MusicTest(){
 }
 
 void StartMusic() {
+    InitAudioDevice();
     SetMasterVolume(0.30);
     PlayMusicStream(musics[music_main].music);// começa tocando a primeira musica, no caso, a principal
     musics[music_main].music.looping = true; // starta o loop
