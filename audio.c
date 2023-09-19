@@ -32,13 +32,13 @@ static char audios[11][100] = {
 };
 
 static char songs[7][100] = {
-    "assets/musicas/Strength of the Titans.mp3",
-    "assets/musicas/Gerudo Valley.mp3",
-    "assets/musicas/The Edge of Green.mp3",
-    "assets/musicas/At Doom's Gate.mp3",
-    "assets/musicas/Find the Flame.mp3",
-    "assets/musicas/To Sail Forbidden Seas.mp3",
-    "assets/musicas/Final Game.mp3"
+    "assets/musicas/Strength of the Titans.ogg",
+    "assets/musicas/Gerudo Valley.ogg",
+    "assets/musicas/The Edge of Green.ogg",
+    "assets/musicas/At Doom's Gate.ogg",
+    "assets/musicas/Find the Flame.ogg",
+    "assets/musicas/To Sail Forbidden Seas.ogg",
+    "assets/musicas/Final Game.ogg"
 };
 
 static int soundsLen = 0;
