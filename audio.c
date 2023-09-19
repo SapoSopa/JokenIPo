@@ -18,17 +18,17 @@ static NameSound sounds[11];
 static NameMusic musics[7]; // definindo o tamanho ainda
 
 static char audios[11][100] = {
-    "assets/audios/door.mp3",
-    "assets/audios/death.mp3",
-    "sassets/audios/fire.mp3",
-    "assets/audios/scissors.mp3",
-    "assets/audios/paper.mp3",
-    "assets/audios/rock.mp3",
-    "assets/audios/gun.mp3",
-    "assets/audios/water.mp3",
-    "assets/audios/sponge.mp3",
-    "assets/audios/hit.mp3",
-    "assets/audios/air.mp3"
+    "assets/audios/door.wav",
+    "assets/audios/death.wav",
+    "sassets/audios/fire.wav",
+    "assets/audios/scissors.wav",
+    "assets/audios/paper.wav",
+    "assets/audios/rock.wav",
+    "assets/audios/gun.wav",
+    "assets/audios/water.wav",
+    "assets/audios/sponge.wav",
+    "assets/audios/hit.wav",
+    "assets/audios/air.wav"
 };
 
 static char songs[7][100] = {
