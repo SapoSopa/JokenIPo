@@ -139,7 +139,7 @@
   </object>
  </objectgroup>
  <objectgroup id="8" name="Pontos">
-  <object id="28" name="Player" x="494.952" y="716.152">
+  <object id="28" name="Player" x="493.952" y="668.152">
    <point/>
   </object>
   <object id="29" name="XIII" x="559.723" y="222.423">

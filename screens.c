@@ -290,9 +290,10 @@ void UpdatePlayerPosition(tmx_map *map, Rectangle *playerRect)
                     {
                         if (obj->name && strcmp(obj->name, "Player") == 0)
                         {
-                            playerRect->x = obj->x;
-                            playerRect->y = obj->y;
+                            playerRect->x = obj->x - playerRect->width/2;
+                            playerRect->y = obj->y - playerRect->height;
                             achou = true;
+                            printf("posição x,y: %f,%f\n", playerRect->x, playerRect->y);
                         }
                         obj = obj->next;
                     }
@@ -307,6 +308,7 @@ int CheckWhereToGo (tmx_map *map, Rectangle *playerRect)
 {
     if(CheckObjName(map, playerRect, "Portas", "Porta_I"))
     {
+    
         return Porta_I;
     }
     else if(CheckObjName(map, playerRect, "Portas", "Porta_II"))
@@ -358,6 +360,7 @@ int CheckWhereToGo (tmx_map *map, Rectangle *playerRect)
 void UpdateMap(tmx_map *map, Rectangle *playerRect, int *currentMap)
 {
     *currentMap = CheckWhereToGo(map, playerRect);
+    map = GetMap(*currentMap);
     UpdatePlayerPosition(map, playerRect);
 }
 
