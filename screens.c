@@ -204,10 +204,11 @@ void battleMenu(){
         }
         DrawPropCenteredRectangle(0.1 * i + 0.1, 0.8, 100, 100, cor);
         DrawPropResCenteredTexture(*GetTexture(Texture_rock + i), (Vector2){0.1 * i + 0.1, 0.8}, 0, 1.5, WHITE);
-        //DrawPropCenteredTexture(*GetTexture(Texture_rock + i), 0.1 * i + 0.1, 0.8, WHITE);
     }
+
     DrawPropRectangle(0.3, 0.03, 480, 100, DARKBLUE); // pontos
     DrawPropRectangle(0.795, 0.18, 200, 270, DARKBLUE);
+    DrawPropResCenteredTexture(*GetTexture(Texture_Alberto), (Vector2){0.873, 0.35}, 0, 0.4, WHITE);
     DrawPropRectangle(0.64, 0.3, 150, 150, DARKBLUE);
     DrawPropRectangle(0.22, 0.3, 150, 150, DARKBLUE); // oq vai aparecer o personagem 
     DrawPropRectangle(0.03, 0.18, 200, 270, DARKBLUE); // maior do canto
@@ -426,14 +427,14 @@ void PlayerControl(Rectangle *playerRect, tmx_map *map)
 }
 
 void Creditos(){
-    DrawPropCenteredText("Créditos:", 0.1, 0.1, 24, WHITE);
-     DrawPropCenteredText("Grupo 7", 0.1, 0.2, 24, WHITE);
-     DrawPropCenteredText("João Miguel", 0.1, 0.3, 24, WHITE);
-     DrawPropCenteredText("Heitor Melo", 0.1, 0.4, 24, WHITE);
-     DrawPropCenteredText("Henrique Cesar", 0.1, 0.5, 24, WHITE);
-     DrawPropCenteredText("Rodrigo Sampaio", 0.1, 0.6, 24, WHITE);
-     DrawPropCenteredText("Millena Neves", 0.1, 0.7, 24, WHITE);
-     DrawPropCenteredText("Isabela Lima", 0.1, 0.8, 24, WHITE);
+    DrawPropCenteredText("Créditos:", 0.5, 0.1, 24, WHITE);
+     DrawPropCenteredText("Grupo 7", 0.5, 0.2, 24, WHITE);
+     DrawPropCenteredText("João Miguel", 0.5, 0.3, 24, WHITE);
+     DrawPropCenteredText("Heitor Melo", 0.5, 0.4, 24, WHITE);
+     DrawPropCenteredText("Henrique Cesar", 0.5, 0.5, 24, WHITE);
+     DrawPropCenteredText("Rodrigo Sampaio", 0.5, 0.6, 24, WHITE);
+     DrawPropCenteredText("Millena Neves", 0.5, 0.7, 24, WHITE);
+     DrawPropCenteredText("Isabela Lima", 0.5, 0.8, 24, WHITE);
      if(IsKeyPressed(KEY_ENTER)){
         SetActiveScreen(&mainMenu);}
 }

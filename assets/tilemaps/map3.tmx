@@ -5,9 +5,9 @@
  <tileset firstgid="134" source="Fundo.tsx"/>
  <tileset firstgid="186" source="tileset_roguelite1.tsx"/>
  <tileset firstgid="1037" source="tileset_complet.tsx"/>
- <tileset firstgid="1118" source="../OneDrive/Área de Trabalho/new decorations/tileset_pipoya1.tsx"/>
+ <tileset firstgid="1118" source="tileset_pipoya1.tsx"/>
  <tileset firstgid="2182" source="tileset_rpg1.tsx"/>
- <objectgroup id="5" name="Paredes" visible="0">
+ <objectgroup id="5" name="Paredes">
   <object id="2" name="Parede" x="192" y="64" width="352" height="32">
    <properties>
     <property name="Collision" type="bool" value="true"/>
@@ -224,7 +224,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="6" name="Portas" visible="0">
+ <objectgroup id="6" name="Portas">
   <object id="55" name="Porta_VI" x="320" y="64" width="96" height="128">
    <properties>
     <property name="porta" type="bool" value="true"/>
@@ -241,7 +241,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="7" name="Pontos" visible="0">
+ <objectgroup id="7" name="Pontos">
   <object id="59" name="Player" x="623.711" y="795.77">
    <point/>
   </object>
@@ -252,7 +252,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="8" name="Inimigos" visible="0">
+ <objectgroup id="8" name="Inimigos">
   <object id="64" name="Inimigo VI" x="288" y="64" width="160" height="224">
    <properties>
     <property name="Interagir" type="bool" value="true"/>

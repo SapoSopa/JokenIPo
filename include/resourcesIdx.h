@@ -37,10 +37,15 @@
 #define Texture_air 7
 #define Texture_water 8
 #define Texture_gun 9
-#define Texture_heart 10
-#define Texture_heart_empty 11
-#define Texture_Player_i 12
-#define Texture_Player 13
+#define Texture_Alberto 10
+#define Texture_Ana_Laura 11
+#define Texture_Danilo 12
+#define Texture_Felipe_santos 13
+#define Texture_Felipe_Torres 14
+#define Texture_Gabriel 15
+#define Texture_Lucas 16
+#define Texture_Matheus 17
+#define Texture_Player 18
 
 
 // maps index

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="29">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="43">
  <tileset firstgid="1" source="Fundo.tsx"/>
  <tileset firstgid="53" source="tileset_complet.tsx"/>
  <tileset firstgid="134" source="Fundo_anm.tsx"/>
  <tileset firstgid="186" source="tileset_complet_anm.tsx"/>
- <tileset firstgid="267" source="../OneDrive/Área de Trabalho/new decorations/tileset_pipoya1.tsx"/>
- <objectgroup id="6" name="Paredes" visible="0">
+ <tileset firstgid="267" source="tileset_pipoya1.tsx"/>
+ <objectgroup id="6" name="Paredes">
   <object id="1" name="Parede" x="416" y="96" width="416" height="32">
    <properties>
     <property name="Collision" type="bool" value="true"/>
@@ -121,8 +121,20 @@
     <property name="Collision" type="bool" value="true"/>
    </properties>
   </object>
+  <object id="29" name="Parede" x="448" y="672" width="32" height="64"/>
+  <object id="32" name="Parede" x="768" y="672" width="32" height="64"/>
+  <object id="33" name="Parede" x="320" y="512" width="32" height="32"/>
+  <object id="34" name="Parede" x="288" y="576" width="64" height="32"/>
+  <object id="35" name="Parede" x="512" y="800" width="32" height="32"/>
+  <object id="36" name="Parede" x="704" y="800" width="32" height="32"/>
+  <object id="37" name="Parede" x="928" y="608" width="32" height="32"/>
+  <object id="38" name="Parede" x="896" y="512" width="32" height="32"/>
+  <object id="39" name="Parede" x="800" y="352" width="96" height="96"/>
+  <object id="40" name="Parede" x="384" y="352" width="96" height="96"/>
+  <object id="41" name="Parede" x="480" y="192" width="32" height="64"/>
+  <object id="42" name="Parede" x="736" y="256" width="32" height="64"/>
  </objectgroup>
- <objectgroup id="7" name="Portas" visible="0">
+ <objectgroup id="7" name="Portas">
   <object id="23" name="Porta_IX" x="576" y="96" width="96" height="128">
    <properties>
     <property name="porta" type="bool" value="true"/>
@@ -134,7 +146,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="9" name="Pontos" visible="0">
+ <objectgroup id="9" name="Pontos">
   <object id="25" name="X" x="623.272" y="252.975">
    <point/>
   </object>
@@ -142,14 +154,14 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Inimigos" visible="0">
+ <objectgroup id="10" name="Inimigos">
   <object id="28" name="Inimigo X" x="544" y="96" width="160" height="224">
    <properties>
     <property name="Interagir" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
- <layer id="1" name="Fundo est" width="40" height="32">
+ <layer id="1" name="Fundo est" width="40" height="32" locked="1">
   <data encoding="csv">
 32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,
 32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,

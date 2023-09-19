@@ -7,7 +7,7 @@
  <tileset firstgid="267" source="tileset_graveyard2.tsx"/>
  <tileset firstgid="907" source="tileset_grave.tsx"/>
  <tileset firstgid="1003" source="tileset_graveyard.tsx"/>
- <objectgroup id="15" name="Paredes" visible="0">
+ <objectgroup id="15" name="Paredes">
   <object id="128" name="Parede" x="160" y="96" width="288" height="32">
    <properties>
     <property name="Collision" type="bool" value="true"/>
@@ -219,7 +219,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Portas" visible="0">
+ <objectgroup id="14" name="Portas">
   <object id="169" name="Porta_II" x="256" y="96" width="96" height="128">
    <properties>
     <property name="porta" type="bool" value="true"/>
@@ -241,7 +241,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="17" name="Pontos" visible="0">
+ <objectgroup id="17" name="Pontos">
   <object id="175" name="Player" x="651.544" y="718.596">
    <point/>
   </object>
@@ -255,7 +255,7 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="18" name="Inimigos" visible="0">
+ <objectgroup id="18" name="Inimigos">
   <object id="177" name="Inimigo I" x="224" y="94.7349" width="160" height="224">
    <properties>
     <property name="Interagir" type="bool" value="true"/>

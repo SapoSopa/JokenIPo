@@ -10,7 +10,7 @@
 #include "stdlib.h"
 #include "raylib.h"
 
-#define TO_LOAD_TEXTURES 10
+#define TO_LOAD_TEXTURES 19
 #define TO_LOAD_SOUNDS 11
 #define TO_LOAD_MUSICS 7
 #define TO_LOAD_MAPS 11
@@ -41,10 +41,15 @@ static char texturesToLoad[TO_LOAD_TEXTURES][100] = {
     "assets/textures/air.png",
     "assets/textures/water.png",
     "assets/textures/gun.png",
-    "assets/textures/heart.png",
-    "assets/textures/heart_empty.png",
-    "assets/Personagens/Player/Começo.png",
-    "assets/Personagens/Pplayer.png",
+    "assets/MonitoresPng/Alberto.png",
+    "assets/MonitoresPng/Ana_Laura.png",
+    "assets/MonitoresPng/Danilo.png",
+    "assets/MonitoresPng/Felipe_santos.png",
+    "assets/MonitoresPng/Felipe_Torres.png",
+    "assets/MonitoresPng/Gabriel.png",
+    "assets/MonitoresPng/Lucas.png",
+    "assets/MonitoresPng/Matheus.png",
+    "assets/Personagens/Player/Comeco.png"
 };
 static char soundsToLoad[TO_LOAD_SOUNDS][100] = {
     "assets/audios/door.wav",
@@ -98,10 +103,6 @@ Texture* GetTexture(int texture) {
     return &GameTextures[texture];
 }
 
-void LoadConfig() {
-}
-void LoadTexts() {
-}
 void M_LoadMap() {
     tmx_img_load_func = raylib_tex_loader;
     tmx_img_free_func = raylib_free_tex;;
@@ -131,12 +132,6 @@ void ToLoadMusics() {
     LoadMusicFile("assets/musicas/musics.txt");
 }
 
-int SaveGame() {
-    return 0;
-}
-int LoadGame() {
-    return 0;
-}
 
 float UpdateLoadAll() {
     return 0.0f;
