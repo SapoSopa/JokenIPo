@@ -209,6 +209,7 @@ void UpdatePlayerPosition(tmx_map *map, Rectangle *playerRect)
     printf("Procurando um lugar pro personagem\n");
     tmx_layer *layer = NULL;
     printf("Será se tem mapa?\n");
+
     if(map)
     {
         printf("Tem mapa\n");
@@ -320,12 +321,12 @@ void UpdateMap(tmx_map *map, Rectangle *playerRect, int *currentMap)
 }
 
 void mapCanvas (int i, tmx_map *map){
-    tmx_map_free(map);
     map = GetMap(i);
 
 	if (!map) {
 		tmx_perror("Cannot load map");
         return;
 	}
+    
     render_map(map);
 }

@@ -39,13 +39,16 @@ void UpdateGame();
 int main () {
     mainWindow();
     SetActiveScreen(&mainMenu);
+
+    // load somethings, temporaly here
+    M_LoadMap();
+    M_LoadTexture();
+
     Rectangle Player = {0, 0, 32, 64};
     tmx_map* map = GetMap(0);
     int currentMap = 0;
     UpdatePlayerPosition(map, &Player);
-    // load somethings, temporaly here
-    M_LoadMap();
-    M_LoadTexture();
+    
     // Main game loop
     while (!WindowShouldClose() && GameState != Quit)    // Detect window close button or ESC key
     {
