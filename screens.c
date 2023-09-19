@@ -368,16 +368,6 @@ void mapCanvas (int i, tmx_map *map){
 
 //quando tentei colocar no lugar certo (game.c), bugou tudo, então deixei aqui mesmo, tudo que ta aqui é de lá
 
-typedef struct {
-    char *name;
-    bool defeated;
-} Enemy;
-
-typedef struct {
-    Enemy *enemy;
-    int size;
-} EnemiesList;
-
 void PlayerControl(Rectangle *playerRect, tmx_map *map)
 {
     Rectangle auxu = *playerRect;
