@@ -1,5 +1,6 @@
 #include "include/enemy.h"
 #include "include/config.h"
+#include "include/resourcesIdx.h"
 #include "include/combat.h"
 #include "include/items.h"
 
@@ -15,8 +16,9 @@ static void InitEnemy(ArenaEnemy *enemy, int level)
 
 }
 
-void startEnemies() {
+void StartEnemies() {
 
+    ArenaEnemies[0].MyTexure = Texture_fire;
     ArenaEnemies[0].life = ArenaEnemies[0].maxLife = PLAYER_MAX_LIFE;
     CombatWheelConstructor(&ArenaEnemies[0].MyCombatWheel);
     ArenaEnemies[0].MyCombatWheel.options[Rock].isActivated = 1;
@@ -112,6 +114,9 @@ void startEnemies() {
     return;
 }
 
+ArenaEnemy* GetEnemy(int enemyIdx) {
+    return &ArenaEnemies[enemyIdx];
+}
 
 int EnemyChooseAction(ArenaEnemy *enemy) {
     srand(time(NULL));

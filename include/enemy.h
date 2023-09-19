@@ -9,11 +9,16 @@ typedef struct M_Enemy ArenaEnemy;
 
 struct M_Enemy
 {
+    int MyTexure;
     int life;
     int maxLife;
     ItemID inventory[MAX_INV_SIZE];
     CombatWheel MyCombatWheel;
 };
+
+void StartEnemies();
+
+ArenaEnemy* GetEnemy(int enemyIdx);
 
 int EnemyChooseAction(ArenaEnemy *enemy);
 

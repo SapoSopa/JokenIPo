@@ -9,6 +9,9 @@ int ArenaConstructor(Arena *arena, ArenaPlayer *player, ArenaEnemy *enemy) {
     arena->round = 0;
     arena->roundMax = 10;
 
+    arena->player = player;
+    arena->enemy = enemy;
+
     arena->playerSelectedOption = NoneChoice;
     arena->enemySelectedOption = NoneChoice;
 
@@ -25,7 +28,13 @@ int PlayerConstructor(ArenaPlayer *player) {
     for (int i = 0; i < MAX_INV_SIZE; i++) {
         player->inventory[i] = NoneItem;
     }
-    
+
+    CombatWheelConstructor(&player->MyCombatWheel);
+
+    for (int i = 0; i < 9; i++) {
+        (*player).MyCombatWheel.options[i].isActivated = 1;
+    }   
+
     return 0;
 }
 
@@ -48,7 +57,9 @@ int nextRound(Arena *arena) {
     return 0;
 }
 
-int UpdateArena(Arena *arena) {
+int UpdateArena(Arena *arena, int *result, int *roundResult) {
+    // bot choose action
+    selectEnemyAction(arena, EnemyChooseAction(arena->enemy));        
 
     // item use 
     if (arena->UsedPlayerItemIdx != NoneItem && arena->playerItemCooldown <= 0)
@@ -68,10 +79,14 @@ int UpdateArena(Arena *arena) {
 
     // check if someone died
     if ((arena->player)->life <= 0) {
+        (*result) = 2;
+        return 0;
         //GameOver();
     }
 
     if ((arena->enemy)->life <= 0) {
+        (*result) = 1;
+        return 0;
         //NextMap();
     }
 
@@ -84,7 +99,9 @@ int UpdateArena(Arena *arena) {
     if (arena->playerSelectedOption != NoneChoice && 
         arena->enemySelectedOption != NoneChoice) 
     {
-        doCombat(arena);
+        printf("enemy choice: %d\n", arena->enemySelectedOption);
+
+        doCombat(arena, roundResult);
         nextRound(arena);
     }
 
@@ -165,7 +182,7 @@ int doEnemyItemAction(Arena *arena) {
     return 0;
 }
 
-int doCombat(Arena *arena) {
+int doCombat(Arena *arena, int *result) {
     Choice playerChoice = arena->playerSelectedOption;
     Choice enemyChoice = arena->enemySelectedOption;
 
@@ -184,11 +201,15 @@ int doCombat(Arena *arena) {
     }
 
     if (winner == 1) {
+        printf("player win\n");
         (arena->enemy)->life -= MIN_DMG;
     } 
     else if (winner == 2) {
+        printf("enemy win\n");
         (arena->player)->life -= MIN_DMG;
     }
+
+    (*result) = winner;
 
     return 0;
 }

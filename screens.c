@@ -1,4 +1,5 @@
 #include "resourcesIdx.h"
+#include "game.h"
 #include "screens.h"
 #include "stdlib.h"
 #include "raylib.h"
@@ -28,9 +29,10 @@ void mainMenu(){
     Texture2D* background = GetTexture(Texture_torre); 
     static Vector2 img = {0,0};//VALOR ONDE A IMAGEM DO FUNDO VAI INICIAR
     static int subir = 1;
-    float tamanho = (float) screenWidth / (float)background->width; 
+    float tamanho = (float) GetScreenWidth() / (float)background->width; 
 
-    if ((img.y <= -(background->height)/2)&& (subir == 1)){
+    //ajeitar a imagem de fundo ----------------------
+    if ((img.y <= -(background->height)/2) && (subir == 1)){
         subir = 2;
     }
     if ((img.y >= 0) && (subir == 2)){
@@ -38,9 +40,9 @@ void mainMenu(){
     }
 
     // Update
-    if(subir == 1)
-    img.y -= 1;
-    if (subir ==2)
+    if (subir == 1)
+        img.y -= 1;
+    if (subir == 2)
         img.y += 1;
     //A IMAGEM DO FUNDO DESCER
     if(IsKeyPressed(KEY_LEFT)&&(selecao>0)){
@@ -51,8 +53,8 @@ void mainMenu(){
     }
 
     if(IsKeyPressed(KEY_ENTER)&&(selecao==0)){
-        //PLAY
-        SetActiveScreen(&FoundEnemyCanvas); //temporário
+        StartBattle(GetEnemy(0));
+        //SetActiveScreen(&FoundEnemyCanvas); //temporário
     }
     if(IsKeyPressed(KEY_ENTER)&&(selecao==1)){
         //CREDITOS
@@ -141,42 +143,22 @@ void FoundEnemyCanvas(){
 
 void battleMenu(){
     static int selecao = 0;
-    if(IsKeyPressed(KEY_LEFT)&&(selecao>0)){
+
+    if(IsKeyPressed(KEY_LEFT)&&(selecao==0)){
+        selecao = 8;
+    }
+    else if(IsKeyPressed(KEY_LEFT)&&(selecao>0)){
         selecao--;
     }
     if(IsKeyPressed(KEY_RIGHT)&&(selecao<8)){
         selecao++;
     }
+    else if(IsKeyPressed(KEY_RIGHT)&&(selecao==8)){
+        selecao = 0;
+    }
+
     if(IsKeyPressed(KEY_ENTER)){
-        switch(selecao){
-            case 1:
-                //pers 1
-                break;
-            case 2:
-                //pers 2
-                break;
-            case 3:
-                //pers 3
-                break;
-            case 4:
-                //pers 4
-                break;
-            case 5:
-                //pers 5
-                break;
-            case 6:
-                //pers 6
-                break;
-            case 7: 
-                //pers 7
-                break;
-            case 8:
-                //pers 8
-                break;
-            case 9: 
-                //pers 9
-                break;       
-        }
+        DoPlayerChoice(selecao);
     }
 
     // Draw
@@ -185,23 +167,23 @@ void battleMenu(){
 
     DrawTextureV(*background,img , GRAY);
     DrawTexturePro(*background, (Rectangle){ 0.0f, 0.0f, (float)background->width, (float)background->height }, 
-    (Rectangle){ 0, 0, screenWidth, screenHeight }, (Vector2){ 0, 0 }, 0.0f, WHITE); 
+    (Rectangle){ 0, 0, GetScreenWidth(), GetScreenHeight() }, (Vector2){ 0, 0 }, 0.0f, WHITE); 
 
     for(int i = 0; i < 9; i++){
         Color cor = DARKBLUE;
         if(i == selecao){
             cor = BLUE; // Muda a cor do retangulo selecionado
         }
-        DrawPropRectangle(0.101 * i + 0.05, 0.72, 100, 100, cor);
+        DrawPropCenteredRectangle(0.1 * i + 0.1, 0.8, 100, 100, cor);
+        DrawPropResCenteredTexture(*GetTexture(Texture_rock + i), (Vector2){0.1 * i + 0.1, 0.8}, 0, 1.5, WHITE);
+        //DrawPropCenteredTexture(*GetTexture(Texture_rock + i), 0.1 * i + 0.1, 0.8, WHITE);
     }
     DrawPropRectangle(0.3, 0.03, 480, 100, DARKBLUE); // pontos
-    DrawPropRectangle(0.795,0.18, 200, 270, DARKBLUE);
-    DrawPropRectangle(0.64,0.3, 150, 150, DARKBLUE);
+    DrawPropRectangle(0.795, 0.18, 200, 270, DARKBLUE);
+    DrawPropRectangle(0.64, 0.3, 150, 150, DARKBLUE);
     DrawPropRectangle(0.22, 0.3, 150, 150, DARKBLUE); // oq vai aparecer o personagem 
     DrawPropRectangle(0.03, 0.18, 200, 270, DARKBLUE); // maior do canto
-    DrawRectangleLines(GetScreenWidth() * 0.03, GetScreenHeight() * 0.65, 1180, 200, BLUE);
-    EndDrawing();
-    
+    DrawRectangleLines(GetScreenWidth() * 0.03, GetScreenHeight() * 0.65, GetScreenWidth() * 0.94, GetScreenHeight() * 0.3, BLUE);    
 }
 
 bool CheckObjName(tmx_map *map, Rectangle *playerRect, char *name, char *objName)

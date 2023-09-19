@@ -33,7 +33,7 @@ void mainWindow(){
 	int monitor = GetCurrentMonitor();
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(1280,1024, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault - n dá mais ??
+    InitWindow(1280,720, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault - n dá mais ??
 	int maxHeight = GetMonitorHeight(monitor) - 40;
 	if (GetScreenHeight() > maxHeight)
 		SetWindowSize(GetScreenWidth(), maxHeight);
@@ -78,6 +78,7 @@ int main () {
     tmx_map* map = GetMap(0);
     int currentMap = 0;
     UpdatePlayerPosition(map, &Player);
+    StartEnemies();
     
     // Main game loop
     while (!WindowShouldClose() && GameState != Quit)    // Detect window close button or ESC key
@@ -97,10 +98,15 @@ int main () {
         BeginDrawing();
         ClearBackground(BLACK);
 
-        //UpdateScreen();
+        UpdateScreen();
         
         //mainMenu();
-        mapCanvas(currentMap, map);
+/*      mapCanvas(currentMap, map);
+        if(IsKeyPressed(KEY_P))
+        {
+            printf("Currentmap agora é o map%d\n", currentMap+1);
+        }
+
         DrawRectangleRec(Player, RED);
         
         if(CheckObjgr(map, &Player, "Inimigos"))
@@ -113,6 +119,7 @@ int main () {
                     //chama pra conversar sobre lutar e quando ganhar trocar o valor de defeated pra true
                 }
             }
+        } 
             else if(CheckObjgr(map, &Player, "Portas"))
             {
                 DrawText("Press E to enter", Player.x-10, Player.y-10, 20, WHITE);
@@ -123,9 +130,10 @@ int main () {
                 }
             }
             
-        }
+        }*/
         //FoundEnemyCanvas();
         //battleMenu();
+        UpdateGameActions();
     
 
         EndDrawing();
