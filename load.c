@@ -47,26 +47,26 @@ static char texturesToLoad[TO_LOAD_TEXTURES][100] = {
     "assets/Personagens/Pplayer.png",
 };
 static char soundsToLoad[TO_LOAD_SOUNDS][100] = {
-    "assets/audios/door.mp3",
-    "assets/audios/death.mp3",
-    "sassets/audios/fire.mp3",
-    "assets/audios/scissors.mp3",
-    "assets/audios/paper.mp3",
-    "assets/audios/rock.mp3",
-    "assets/audios/gun.mp3",
-    "assets/audios/water.mp3",
-    "assets/audios/sponge.mp3",
-    "assets/audios/hit.mp3",
-    "assets/audios/air.mp3"
+    "assets/audios/door.wav",
+    "assets/audios/death.wav",
+    "sassets/audios/fire.wav",
+    "assets/audios/scissors.wav",
+    "assets/audios/paper.wav",
+    "assets/audios/rock.wav",
+    "assets/audios/gun.wav",
+    "assets/audios/water.wav",
+    "assets/audios/sponge.wav",
+    "assets/audios/hit.wav",
+    "assets/audios/air.wav"
 };
 static char musicsToLoad[TO_LOAD_MUSICS][100] = {
-    "assets/musicas/Strength of the Titans.mp3",
-    "assets/musicas/Gerudo Valley.mp3",
-    "assets/musicas/The Edge of Green.mp3",
-    "assets/musicas/At Doom's Gate.mp3",
-    "assets/musicas/Find the Flame.mp3",
-    "assets/musicas/To Sail Forbidden Seas.mp3",
-    "assets/musicas/Final Game.mp3"
+    "assets/musicas/Strength of the Titans.ogg",
+    "assets/musicas/Gerudo Valley.ogg",
+    "assets/musicas/The Edge of Green.ogg",
+    "assets/musicas/At Doom's Gate.ogg",
+    "assets/musicas/Find the Flame.ogg",
+    "assets/musicas/To Sail Forbidden Seas.ogg",
+    "assets/musicas/Final Game.ogg"
 };
 static char mapsToLoad[TO_LOAD_MAPS][100] = {
     "assets/tilemaps/map1.tmx",
