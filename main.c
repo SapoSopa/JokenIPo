@@ -17,6 +17,12 @@ enum GameStates {
     Quit
 };
 
+//tava perdido por ai e veio pra cá... essa bagunça que to fazendo pelo menos funciona, mas organização 0
+typedef struct {
+    char *name;
+    bool defeated;
+} EnemyList;
+
 State GameState = Menu;
 
 void mainWindow(){
@@ -44,6 +50,25 @@ int main () {
     M_LoadMap();
     M_LoadTexture();
 
+    // olha os inimigos aqui
+    EnemyList enemies[16] = {{"Inimigo I", false},
+                             {"Inimigo II", false},
+                             {"Inimigo III", false},
+                             {"Inimigo IV", false},
+                             {"Inimigo V", false},
+                             {"Inimigo VI", false},
+                             {"Inimigo VII", false},
+                             {"Inimigo VIII", false},
+                             {"Inimigo IX", false},
+                             {"Inimigo X", false},
+                             {"Inimigo XI", false},
+                             {"Inimigo XII", false},
+                             {"Inimigo XIII", false},
+                             {"Inimigo XIV", false},
+                             {"Inimigo XV", false},
+                             {"BOSS", false}};
+
+    // Player setup
     Rectangle Player = {0, 0, 32, 64};
     tmx_map* map = GetMap(0);
     int currentMap = 0;

@@ -297,6 +297,27 @@ void UpdatePlayerPosition(tmx_map *map, Rectangle *playerRect)
     }
 }
 
+//cara, sei declarar essa budega não, tem um aqui e outro na main, mas o que importa é que funciona
+typedef struct {
+    char *name;
+    bool defeated;
+} EnemyList;
+
+bool EnemyDefeated(tmx_map *map, Rectangle *playerRect, EnemyList *enemies)
+{
+    if (CheckObjName(map, &playerRect, "Inimigos", "Inimigo I"))
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            if (strcmp(enemies[i].name, "Inimigo I") == 0)
+            {
+                return enemies[i].defeated;
+            }
+        }
+    }
+    return false;
+}
+
 int CheckWhereToGo (tmx_map *map, Rectangle *playerRect)
 {
     if(CheckObjName(map, playerRect, "Portas", "Porta_I"))
@@ -367,16 +388,6 @@ void mapCanvas (int i, tmx_map *map){
 }
 
 //quando tentei colocar no lugar certo (game.c), bugou tudo, então deixei aqui mesmo, tudo que ta aqui é de lá
-
-typedef struct {
-    char *name;
-    bool defeated;
-} Enemy;
-
-typedef struct {
-    Enemy *enemy;
-    int size;
-} EnemiesList;
 
 void PlayerControl(Rectangle *playerRect, tmx_map *map)
 {
