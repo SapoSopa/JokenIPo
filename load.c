@@ -10,7 +10,7 @@
 #include "stdlib.h"
 #include "raylib.h"
 
-#define TO_LOAD_TEXTURES 2
+#define TO_LOAD_TEXTURES 10
 #define TO_LOAD_SOUNDS 11
 #define TO_LOAD_MUSICS 7
 #define TO_LOAD_MAPS 11
@@ -20,11 +20,27 @@ static Texture GameTextures[TO_LOAD_TEXTURES];
 static Sound GameSounds[TO_LOAD_SOUNDS];
 static Music GameMusics[TO_LOAD_MUSICS];
 static tmx_map* GameMaps[TO_LOAD_MAPS];
-
+/* Rock,
+    Fire,
+    Scissors,
+    Human,
+    Sponge,
+    Paper,
+    Air,
+    Water,
+    Gun, */
 //remember to add in resourcesIdx too
 static char texturesToLoad[TO_LOAD_TEXTURES][100] = {
     "assets/textures/torre.png",
-    "assets/Personagens/Alberto/Alberto_Comeco.png"
+    "assets/textures/rock.png",
+    "assets/textures/fire.png",
+    "assets/textures/scissors.png",
+    "assets/textures/human.png",
+    "assets/textures/sponge.png",
+    "assets/textures/paper.png",
+    "assets/textures/air.png",
+    "assets/textures/water.png",
+    "assets/textures/gun.png"
 };
 static char soundsToLoad[TO_LOAD_SOUNDS][100] = {
     "assets/audios/door.mp3",

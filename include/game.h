@@ -6,4 +6,11 @@
 #include "enemy.h"
 #include "arena.h"
 
+void StartBattle(ArenaEnemy *enemy);
+void DoPlayerChoice(Choice choice);
+
+void UpdateGameActions();
+
+void ResetArena();
+
 #endif

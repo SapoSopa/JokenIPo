@@ -10,6 +10,8 @@ void DrawPropCenteredTexture(Texture2D texture, float xProp, float yProp, Color 
 void DrawPropCenteredText(const char *text, float xProp, float yProp, int fontSize, Color color);
 void DrawPropCenteredRectangle(float xProp, float yProp, float width, float height, Color color);
 
+void DrawPropResCenteredTexture(Texture2D texture, Vector2 proportions, float rotation, float scale, Color tint);
+
 void DrawPropTexture(Texture2D texture, float xProp, float yProp, Color tint);
 void DrawPropText(const char *text, float xProp, float yProp, int fontSize, Color color);
 void DrawPropCircle(float xProp, float yProp, float radius, Color color);

@@ -22,6 +22,10 @@ void DrawPropCenteredRectangle(float xProp, float yProp, float width, float heig
     DrawRectangle(GetScreenWidth() * xProp - width / 2, GetScreenHeight() * yProp - height / 2, width, height, color);
 }
 
+void DrawPropResCenteredTexture(Texture2D texture, Vector2 proportions, float rotation, float scale, Color tint){
+    DrawTextureEx(texture, (Vector2){GetScreenWidth() * proportions.x - texture.width * scale / 2, GetScreenHeight() * proportions.y - texture.height * scale / 2}, rotation, scale, tint);
+}
+
 
 void DrawPropTexture(Texture2D texture, float xProp, float yProp, Color tint){
     DrawTexture(texture, GetScreenWidth() * xProp, GetScreenHeight() * yProp, tint);

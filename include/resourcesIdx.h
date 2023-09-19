@@ -28,9 +28,15 @@
 // textures index
 
 #define Texture_torre 0
-#define Texture_name_2 1
-#define Texture_name_3 2
-#define Texture_name_4 3
+#define Texture_rock 1
+#define Texture_fire 2
+#define Texture_scissors 3
+#define Texture_human 4
+#define Texture_sponge 5
+#define Texture_paper 6
+#define Texture_air 7
+#define Texture_water 8
+#define Texture_gun 9
 
 // maps index
 
