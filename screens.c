@@ -103,6 +103,26 @@ void mainMenu(){
     }
 }
 
+void TutorialCanvas(){
+    Vector2 centerPoint= {GetScreenWidth()*0.5,GetScreenHeight()*0.5};
+    float radius= GetScreenHeight()/5;
+
+    static int opcoes[9] = {Texture_rock, Texture_fire, Texture_scissors, Texture_human, Texture_sponge,
+                            Texture_paper, Texture_air, Texture_water, Texture_gun};
+    
+    for(int i=0;i<9;i++){
+        DrawCircle(centerPoint.x + radius *cos(i*2*PI/9), centerPoint.y + radius*sin(i*2*PI/9), 46, WHITE);
+        DrawResCenteredTexture(*GetTexture(opcoes[i]), (Vector2){centerPoint.x +radius *cos(i*2*PI/9), centerPoint.y+radius*sin(i*2*PI/9)}, 0, 1.5, WHITE);
+    }
+    
+    DrawFixedPropRectangle(0.02, 0.02, 0.96, 0.2, VIOLET);
+    DrawPropText("TUTORIAL:",0.03, 0.03, 30, WHITE); 
+    DrawPropText("Você deve ganhar a maioria dos confrontos. Para isso, leve o diagrama abaixo como base.", 0.06, 0.1, 25, WHITE);
+
+    DrawFixedPropRectangle(0.02, 0.85, 0.6, 0.13, VIOLET);
+    DrawPropText("Pressione ENTER para continuar", 0.03, 0.9, 30, WHITE);
+}
+
 void FoundEnemyCanvas(){
     static int selecao = 0;
     // Update

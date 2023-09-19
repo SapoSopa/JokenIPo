@@ -98,7 +98,7 @@ int main () {
         BeginDrawing();
         ClearBackground(BLACK);
 
-        UpdateScreen();
+        //UpdateScreen();
         
         //mainMenu();
 /*      mapCanvas(currentMap, map);
@@ -133,8 +133,8 @@ int main () {
         }*/
         //FoundEnemyCanvas();
         //battleMenu();
-        UpdateGameActions();
-    
+        //UpdateGameActions();
+        TutorialCanvas();
 
         EndDrawing();
     }

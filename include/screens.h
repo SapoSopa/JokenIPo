@@ -12,6 +12,8 @@ void FoundEnemyCanvas();
 
 void mainMenu();
 
+void TutorialCanvas();
+
 void mapCanvas();
 
 void startBattleCanvas();
