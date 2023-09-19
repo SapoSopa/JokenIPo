@@ -44,8 +44,8 @@ State GameState = Menu;
 
 void mainWindow(){
 	int monitor = GetCurrentMonitor();
-    
 
+    InitAudioDevice();
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1280,720, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault - n dá mais ??
 	int maxHeight = GetMonitorHeight(monitor) - 40;
@@ -86,14 +86,11 @@ int main () {
     // load somethings, temporaly here
     M_LoadMap();
     M_LoadTexture();
-   // ToLoadMusics();
-   //ToLoadSounds();
 
     // Player setup
     Rectangle Player = {0, 0, 32, 64};
-    tmx_map* map = GetMap(1);
-    Texture2D *Ptexture = GetTexture(Texture_Player_i);
-    int currentMap = 1;
+    tmx_map* map = GetMap(0);
+    int currentMap = 0;
     UpdatePlayerPosition(map, &Player);
     StartEnemies();
     
@@ -101,7 +98,6 @@ int main () {
     while (!WindowShouldClose() && GameState != Quit)    // Detect window close button or ESC key
     {
         // Update
-        UpdateMusic();
         switch (GameState)
         {
         case Menu:
@@ -122,6 +118,21 @@ int main () {
         {
             mapCanvas(currentMap, map);
             DrawRectangle(Player.x, Player.y, Player.width, Player.height, RED);
+            if(IsKeyDown(KEY_G))
+            {
+                if(IsKeyPressed(KEY_RIGHT))
+                {
+                    currentMap++;
+                    map = GetMap(currentMap);
+                    UpdatePlayerPosition(map, &Player);
+                }
+                if(IsKeyPressed(KEY_LEFT))
+                {
+                    currentMap--;
+                    map = GetMap(currentMap);
+                    UpdatePlayerPosition(map, &Player);
+                }
+            }
             if(CheckObjgr(map, &Player, "Inimigos"))
             {
                 if(!EnemyDefeated(map, &Player, enemies))
@@ -178,11 +189,6 @@ void UpdateGame() {
     if (IsKeyPressed(KEY_ESCAPE)) {
         GameState = Menu;
     }
-}
-
-void UpdateMovement()
-{
- // PlayerControl(&Player, map);
 }
 
 tmx_map** GetCurrentMap() 
