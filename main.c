@@ -47,6 +47,23 @@ void QuitApplication();
 void UpdateMenu();
 void UpdateGame();
 
+static  EnemyList enemies[16] = {{"Inimigo I", false},
+                        {"Inimigo II", false},
+                        {"Inimigo III", false},
+                        {"Inimigo IV", false},
+                        {"Inimigo V", false},
+                        {"Inimigo VI", false},
+                        {"Inimigo VII", false},
+                        {"Inimigo VIII", false},
+                        {"Inimigo IX", false},
+                        {"Inimigo X", false},
+                        {"Inimigo XI", false},
+                        {"Inimigo XII", false},
+                        {"Inimigo XIII", false},
+                        {"Inimigo XIV", false},
+                        {"Inimigo XV", false},
+                        {"BOSS", false}};
+
 int main () {
     mainWindow();
     SetActiveScreen(&mainMenu);
@@ -56,22 +73,7 @@ int main () {
     M_LoadTexture();
 
     // olha os inimigos aqui
-    EnemyList enemies[16] = {{"Inimigo I", false},
-                             {"Inimigo II", false},
-                             {"Inimigo III", false},
-                             {"Inimigo IV", false},
-                             {"Inimigo V", false},
-                             {"Inimigo VI", false},
-                             {"Inimigo VII", false},
-                             {"Inimigo VIII", false},
-                             {"Inimigo IX", false},
-                             {"Inimigo X", false},
-                             {"Inimigo XI", false},
-                             {"Inimigo XII", false},
-                             {"Inimigo XIII", false},
-                             {"Inimigo XIV", false},
-                             {"Inimigo XV", false},
-                             {"BOSS", false}};
+
 
     // Player setup
     Rectangle Player = {0, 0, 32, 64};
@@ -93,12 +95,11 @@ int main () {
             UpdateGame();
             break;
         }
-        PlayerControl(&Player, map);
         
         BeginDrawing();
         ClearBackground(BLACK);
 
-        //UpdateScreen();
+        UpdateScreen();
         
         //mainMenu();
 /*      mapCanvas(currentMap, map);
@@ -134,7 +135,7 @@ int main () {
         //FoundEnemyCanvas();
         //battleMenu();
         //UpdateGameActions();
-        TutorialCanvas();
+        //TutorialCanvas();
 
         EndDrawing();
     }

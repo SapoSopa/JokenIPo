@@ -23,6 +23,17 @@ void StartBattle(ArenaEnemy *enemy) {
     SetActiveScreen(&battleMenu);
 }
 
+void StartPlaying(){
+    InBattle = False;
+    PlayerControl(&Player, map);
+    SetActiveScreen(NULL);
+}
+
+void StartTutorial() {
+    InBattle = False;
+    SetActiveScreen(&TutorialCanvas);
+}
+
 void DoPlayerChoice(Choice choice) {
     printf("Player choice: %d\n", choice);
     selectPlayerAction(&MainArena, choice);
