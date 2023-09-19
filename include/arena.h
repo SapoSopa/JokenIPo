@@ -13,7 +13,6 @@ struct M_Player
 {
     int life;
     int maxLife;
-    int level;
     // int InCombo;    //pensando se coloco isso no arena tambem
     ItemID inventory[MAX_INV_SIZE];
     CombatWheel MyCombatWheel;
@@ -21,13 +20,8 @@ struct M_Player
 
 struct Arena
 {
-    int mapIdx;
-
     int round;
     int roundMax;
-
-    float playerItemRandomChance;
-    float enemyItemRandomChance;
 
     // maybe create a queue of arena effects
 
@@ -63,14 +57,6 @@ int doCombat(Arena *arena); // do combat
 
 int LoadMap(int mapIdx); // load map from maps
 int NextMap();           // load next map
-
-/*
-int LoadArena(); // load arena file
-int SaveArena(); // save arena file
-
-int LoadPlayer(); // load player from file
-int SavePlayer(); // save player in file
-*/
 
 // int LoadEnemy();
 

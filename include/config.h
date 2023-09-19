@@ -7,6 +7,6 @@
 
 // -------- combat -------
 #define MIN_DMG 1
-#define ENEMY_COUNT 3
+#define ENEMY_COUNT 16
 
 #endif

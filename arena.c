@@ -6,13 +6,8 @@
 #include "raylib.h"
 
 int ArenaConstructor(Arena *arena, ArenaPlayer *player, ArenaEnemy *enemy) {
-    arena->mapIdx = 0;
-
     arena->round = 0;
     arena->roundMax = 10;
-
-    arena->playerItemRandomChance = 0.5;
-    arena->enemyItemRandomChance = 0.5;
 
     arena->playerSelectedOption = NoneChoice;
     arena->enemySelectedOption = NoneChoice;
@@ -26,7 +21,6 @@ int ArenaConstructor(Arena *arena, ArenaPlayer *player, ArenaEnemy *enemy) {
 int PlayerConstructor(ArenaPlayer *player) {
     player->life = PLAYER_MAX_LIFE;
     player->maxLife = PLAYER_MAX_LIFE;
-    player->level = 1;
 
     for (int i = 0; i < MAX_INV_SIZE; i++) {
         player->inventory[i] = NoneItem;
@@ -55,13 +49,6 @@ int nextRound(Arena *arena) {
 }
 
 int UpdateArena(Arena *arena) {
-    //do item drop here
-    if (arena->playerItemCooldown <= 0) {
-        if (GetRandomValue(0, 100) <= arena->playerItemRandomChance * 100) {
-            //drop item
-        }
-    }
-
 
     // item use 
     if (arena->UsedPlayerItemIdx != NoneItem && arena->playerItemCooldown <= 0)
