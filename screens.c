@@ -53,7 +53,7 @@ void mainMenu(){
     }
 
     if(IsKeyPressed(KEY_ENTER)&&(selecao==0)){
-        StartBattle(GetEnemy(0));
+        StartTutorial();
         //SetActiveScreen(&FoundEnemyCanvas); //temporário
     }
     if(IsKeyPressed(KEY_ENTER)&&(selecao==1)){
@@ -121,6 +121,10 @@ void TutorialCanvas(){
 
     DrawFixedPropRectangle(0.02, 0.85, 0.6, 0.13, VIOLET);
     DrawPropText("Pressione ENTER para continuar", 0.03, 0.9, 30, WHITE);
+
+    if (IsKeyPressed(KEY_ENTER)) {
+        StartPlaying();
+    }
 }
 
 void FoundEnemyCanvas(){
@@ -135,10 +139,10 @@ void FoundEnemyCanvas(){
     if(IsKeyPressed(KEY_ENTER)){
         switch(selecao){
             case 1:
-                //item 1
+                StartBattle();
                 break;
             case 2:
-                //item 2
+                StartPlaying();
                 break;     
         }
     }
