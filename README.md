@@ -15,7 +15,7 @@ O jogo "JokenIPo" é um jogo 2D desenvolvido em C\C++ com a utilização da bibl
 
 O jogo é a história de um jovem guerreiro que deseja adentrar numa gigantesca torre para se tornar o grande IP(Imperador do Portal), mas para isso ele devera travar diversas batalhas contras os Monitores da torre e a Atual IP.
 
-O sistema de combate é baseado em uma versão modificada do jogo milenar de Jokenpo, que conta com mais opções paras serem escolhidas.
+O sistema de combate é baseado em uma versão modificada do jogo milenar de Jokenpo, que conta com mais opções para serem escolhidas.
 
 <p align="center">
 <img loading="lazy" src="assets/Diagrama.jpg">
