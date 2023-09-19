@@ -75,8 +75,8 @@ int main () {
 
     // Player setup
     Rectangle Player = {0, 0, 32, 64};
-    tmx_map* map = GetMap(0);
-    int currentMap = 0;
+    tmx_map* map = GetMap(1);
+    int currentMap = 1;
     UpdatePlayerPosition(map, &Player);
     StartEnemies();
     
@@ -101,7 +101,7 @@ int main () {
         //UpdateScreen();
         
         //mainMenu();
-/*      mapCanvas(currentMap, map);
+     mapCanvas(currentMap, map);
         if(IsKeyPressed(KEY_P))
         {
             printf("Currentmap agora é o map%d\n", currentMap+1);
@@ -109,7 +109,7 @@ int main () {
 
         DrawRectangleRec(Player, RED);
         
-        if(CheckObjgr(map, &Player, "Inimigos"))
+        if(!CheckObjgr(map, &Player, "Inimigos"))
         {
             if(!EnemyDefeated(map, &Player, enemies))
             {
@@ -120,21 +120,22 @@ int main () {
                 }
             }
         } 
-            else if(CheckObjgr(map, &Player, "Portas"))
+        else if(CheckObjgr(map, &Player, "Portas"))
+        {
+            DrawText("Press E to enter", Player.x-10, Player.y-10, 20, WHITE);
+            if (IsKeyPressed(KEY_E))
             {
-                DrawText("Press E to enter", Player.x-10, Player.y-10, 20, WHITE);
-                if (IsKeyPressed(KEY_E))
-                {
-                    UpdateMap(map, &Player, &currentMap);
-                    map = GetMap(currentMap);
+                UpdateMap(map, &Player, &currentMap);
+                printf("o mapa %d foi carregado\n", currentMap+1);
+                map = GetMap(currentMap);
                 }
             }
             
-        }*/
+        
         //FoundEnemyCanvas();
         //battleMenu();
         //UpdateGameActions();
-        TutorialCanvas();
+       // TutorialCanvas();
 
         EndDrawing();
     }

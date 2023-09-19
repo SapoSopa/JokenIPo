@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="23" nextobjectid="188">
- <tileset firstgid="1" source="../../../Downloads/tileset_complet.tsx"/>
- <tileset firstgid="82" source="../../../Downloads/Fundo.tsx"/>
- <tileset firstgid="134" source="../../../Downloads/Fundo_anm.tsx"/>
- <tileset firstgid="186" source="../../../Downloads/tileset_complet_anm.tsx"/>
+ <tileset firstgid="1" source="tileset_complet.tsx"/>
+ <tileset firstgid="82" source="Fundo.tsx"/>
+ <tileset firstgid="134" source="Fundo_anm.tsx"/>
+ <tileset firstgid="186" source="tileset_complet_anm.tsx"/>
  <tileset firstgid="267" source="tileset_graveyard2.tsx"/>
  <tileset firstgid="907" source="tileset_grave.tsx"/>
  <tileset firstgid="1003" source="tileset_graveyard.tsx"/>
