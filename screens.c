@@ -204,38 +204,86 @@ void battleMenu(){
     
 }
 
-void UpdatePlayerPosition(tmx_map *map, Rectangle *playerRect)
+bool CheckObjName(tmx_map *map, Rectangle *playerRect, char *name, char *objName)
 {
-    printf("Procurando um lugar pro personagem\n");
     tmx_layer *layer = NULL;
-    printf("Será se tem mapa?\n");
-
-    if(map)
+    layer = map->ly_head;
+    while(layer)
     {
-        printf("Tem mapa\n");
-        layer = map->ly_head;
-    }
-    bool achou = false;
-    printf("vamos ver as camadas \n");
-    while(layer && !achou)
-    {
-        printf("uma layer lida \n");
         if (layer->visible)
         {
-            printf("uma layer visivel \n");
-            if (layer->type == L_OBJGR && layer->name && strcmp(layer->name, "Pontos") == 0)
+            if (layer->type == L_OBJGR && layer->name && strcmp(layer->name, name) == 0)
             {
-                printf("uma layer de pontos \n");
                 if(layer->content.objgr)
                 {
-                    printf("uma layer de pontos com conteudo \n");
+                    tmx_object *obj = layer->content.objgr->head;
+                    while (obj)
+                    {
+                        if (obj->name && strcmp(obj->name, objName) == 0)
+                        {
+                            if (CheckCollisionRecs(*playerRect, (Rectangle){obj->x, obj->y, obj->width, obj->height}))
+                            {
+                                return true;
+                            }
+                        }
+                        obj = obj->next;
+                    }
+                }
+            }               
+        }
+        layer = layer->next;
+    }
+    return false;
+}
+
+
+bool CheckObjgr(tmx_map *map, Rectangle *playerRect, char *name)
+{
+    tmx_layer *layer = NULL;
+    layer = map->ly_head;
+    while(layer)
+    {
+        if (layer->visible)
+        {
+            if (layer->type == L_OBJGR && layer->name && strcmp(layer->name, name) == 0)
+            {
+                if(layer->content.objgr)
+                {
+                    tmx_object *obj = layer->content.objgr->head;
+                    while (obj)
+                    {
+                        if (CheckCollisionRecs(*playerRect, (Rectangle){obj->x, obj->y, obj->width, obj->height}))
+                        {
+                            return true;
+                        }
+                        obj = obj->next;
+                    }
+                }
+            }               
+        }
+        layer = layer->next;
+    }
+    return false;
+}
+
+void UpdatePlayerPosition(tmx_map *map, Rectangle *playerRect)
+{
+    tmx_layer *layer = NULL;
+    layer = map->ly_head;
+    bool achou = false;
+    while(layer && !achou)
+    {
+        if (layer->visible)
+        {
+            if (layer->type == L_OBJGR && layer->name && strcmp(layer->name, "Pontos") == 0)
+            {
+                if(layer->content.objgr)
+                {
                     tmx_object *obj = layer->content.objgr->head;
                     while (obj && !achou)
                     {
-                        printf("um objeto lido \n");
                         if (obj->name && strcmp(obj->name, "Player") == 0)
                         {
-                            printf("um objeto de player \n");
                             playerRect->x = obj->x;
                             playerRect->y = obj->y;
                             achou = true;
@@ -251,66 +299,53 @@ void UpdatePlayerPosition(tmx_map *map, Rectangle *playerRect)
 
 int CheckWhereToGo (tmx_map *map, Rectangle *playerRect)
 {
-    tmx_layer *layer = NULL;
-    layer = map->ly_head;
-    bool achou = false;
-    while(layer && !achou)
+    if(CheckObjName(map, playerRect, "Portas", "Porta_I"))
     {
-        if (layer->visible)
-        {
-            if (layer->type == L_OBJGR && strcmp(layer->name, "Portas") == 0)
-            {
-                tmx_object *obj = layer->content.objgr->head;
-                while (obj && !achou)
-                {
-                    if (CheckCollisionRecs(*playerRect, (Rectangle){obj->x, obj->y, obj->width, obj->height}))
-                    {
-                        if (strcmp(obj->name, "Porta_II"))
-                        {
-                            return Porta_II;
-                        }
-                        else if (strcmp(obj->name, "Porta_III"))
-                        {
-                            return Porta_III;
-                        }
-                        else if (strcmp(obj->name, "Porta_IV"))
-                        {
-                            return Porta_IV;
-                        }
-                        else if (strcmp(obj->name, "Porta_V"))
-                        {
-                            return Porta_V;
-                        }
-                        else if (strcmp(obj->name, "Porta_VI"))
-                        {
-                            return Porta_VI;
-                        }
-                        else if (strcmp(obj->name, "Porta_VII"))
-                        {
-                            return Porta_VII;
-                        }
-                        else if (strcmp(obj->name, "Porta_VIII"))
-                        {
-                            return Porta_VIII;
-                        }
-                        else if (strcmp(obj->name, "Porta_IX"))
-                        {
-                            return Porta_IX;
-                        }
-                        else if (strcmp(obj->name, "Porta_X"))
-                        {
-                            return Porta_X;
-                        }
-                        else if (strcmp(obj->name, "Porta_XI"))
-                        {
-                            return Porta_XI;
-                        }
-                    }
-                    obj = obj->next;
-                }
-            }               
-        }
-        layer = layer->next;
+        return Porta_I;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_II"))
+    {
+        return Porta_II;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_III"))
+    {
+        return Porta_III;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_IV"))
+    {
+        return Porta_IV;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_V"))
+    {
+        return Porta_V;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_VI"))
+    {
+        return Porta_VI;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_VII"))
+    {
+        return Porta_VII;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_VIII"))
+    {
+        return Porta_VIII;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_IX"))
+    {
+        return Porta_IX;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_X"))
+    {
+        return Porta_X;
+    }
+    else if(CheckObjName(map, playerRect, "Portas", "Porta_XI"))
+    {
+        return Porta_XI;
+    }
+    else
+    {
+        return -1;
     }
 }
 
@@ -329,4 +364,48 @@ void mapCanvas (int i, tmx_map *map){
 	}
     
     render_map(map);
+}
+
+void PlayerControl(Rectangle *playerRect, tmx_map *map)
+{
+    Rectangle auxu = *playerRect;
+    auxu.y -= 5;
+    Rectangle auxd = *playerRect;
+    auxd.y += 5;
+    Rectangle auxl = *playerRect;
+    auxl.x -= 5;
+    Rectangle auxr = *playerRect;
+    auxr.x += 5;
+    if (IsKeyDown(KEY_UP) && !CheckObjgr(map, &auxu, "Paredes"))
+    {
+        playerRect->y -= 4; 
+    }
+    else if (IsKeyDown(KEY_UP) && CheckObjgr(map, &auxu, "Paredes"))
+    {
+        playerRect->y += 1;
+    }
+    if (IsKeyDown(KEY_DOWN) && !CheckObjgr(map, &auxd, "Paredes"))
+    {
+        playerRect->y += 4;
+    }
+    else if(IsKeyDown(KEY_DOWN) && CheckObjgr(map, &auxd, "Paredes"))
+    {
+        playerRect->y -= 1;
+    }
+    if (IsKeyDown(KEY_LEFT) && !CheckObjgr(map, &auxl, "Paredes"))
+    {
+        playerRect->x -= 4;
+    }
+    else if(IsKeyDown(KEY_LEFT) && CheckObjgr(map, &auxl, "Paredes"))
+    {
+        playerRect->x += 1;
+    }
+    if (IsKeyDown(KEY_RIGHT) && !CheckObjgr(map, &auxr, "Paredes"))
+    {
+        playerRect->x += 4;
+    }
+    else if(IsKeyDown(KEY_RIGHT) && CheckObjgr(map, &auxr, "Paredes"))
+    {
+        playerRect->x -= 1;
+    }
 }
