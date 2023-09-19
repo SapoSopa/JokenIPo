@@ -45,8 +45,9 @@
 #define Map_fase9 8
 #define Map_fase10 9
 #define Map_fase11 10
-#define Map_fase12 11
 
+
+#define Porta_I Map_fase1
 #define Porta_II Map_fase2
 #define Porta_III Map_fase3
 #define Porta_IV Map_fase4
@@ -57,6 +58,6 @@
 #define Porta_IX Map_fase9
 #define Porta_X Map_fase10
 #define Porta_XI Map_fase11
-#define Porta_XII Map_fase1
+
 
 #endif

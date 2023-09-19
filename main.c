@@ -52,6 +52,7 @@ int main () {
     // Main game loop
     while (!WindowShouldClose() && GameState != Quit)    // Detect window close button or ESC key
     {
+        // Update
         switch (GameState)
         {
         case Menu:
@@ -61,16 +62,31 @@ int main () {
             UpdateGame();
             break;
         }
-
+        PlayerControl(&Player, map);
+        
         BeginDrawing();
         ClearBackground(BLACK);
 
         //UpdateScreen();
-
+        
         //mainMenu();
         mapCanvas(currentMap, map);
+        if(IsKeyPressed(KEY_P))
+        {
+            printf("Currentmap agora é o map%d\n", currentMap+1);
+        }
         DrawRectangleRec(Player, RED);
-    
+        
+        if(CheckObjgr(map, &Player, "Portas"))
+        {
+            DrawText("Press E to enter", Player.x-10, Player.y-10, 20, WHITE);
+            if (IsKeyPressed(KEY_E))
+            {
+                UpdateMap(map, &Player, &currentMap);
+                map = GetMap(currentMap);
+                printf("Currentmap agora é o map%d\n", currentMap+1);
+            }
+        }
         //FoundEnemyCanvas();
         //battleMenu();
     
