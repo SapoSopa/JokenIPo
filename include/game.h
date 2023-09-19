@@ -7,6 +7,9 @@
 #include "arena.h"
 
 void StartBattle(ArenaEnemy *enemy);
+void StartPlaying();
+void StartTutorial();
+
 void DoPlayerChoice(Choice choice);
 
 void UpdateGameActions();
