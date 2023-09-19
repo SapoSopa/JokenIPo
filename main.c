@@ -7,6 +7,8 @@
 #include "include/load.h"
 #include "include/screens.h"
 #include "include/resourcesIdx.h"
+#include "include/canvas.h"
+#include "include/audio.h"
 
 typedef int State;
 enum GameStates {
@@ -17,6 +19,14 @@ enum GameStates {
     GameOver,
     Quit
 };
+
+
+static int isRunning = 0;
+
+void SetRunning(int value)
+{
+    isRunning = value;
+}
 
 //tava perdido por ai e veio pra cá... essa bagunça que to fazendo pelo menos funciona, mas organização 0
 typedef struct {
@@ -34,6 +44,7 @@ State GameState = Menu;
 
 void mainWindow(){
 	int monitor = GetCurrentMonitor();
+    
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1280,720, "JokenIPo"); //verificar pq 1280 e 720 dá seg fault - n dá mais ??
@@ -71,13 +82,12 @@ static  EnemyList enemies[16] = {{"Inimigo I", false},
 int main () {
     mainWindow();
     SetActiveScreen(&mainMenu);
-
+    
     // load somethings, temporaly here
     M_LoadMap();
     M_LoadTexture();
-
-    // olha os inimigos aqui
-
+   // ToLoadMusics();
+   //ToLoadSounds();
 
     // Player setup
     Rectangle Player = {0, 0, 32, 64};
@@ -91,6 +101,7 @@ int main () {
     while (!WindowShouldClose() && GameState != Quit)    // Detect window close button or ESC key
     {
         // Update
+        UpdateMusic();
         switch (GameState)
         {
         case Menu:
@@ -101,52 +112,47 @@ int main () {
             break;
         }
         
+        PlayerControl(&Player, map);
         BeginDrawing();
         ClearBackground(BLACK);
 
         UpdateScreen();
         
-        //mainMenu();
-        mapCanvas(currentMap, map);
-        if(IsKeyPressed(KEY_P))
+        if(isRunning)
         {
-            printf("Currentmap agora é o map%d\n", currentMap+1);
-        }
-
-        DrawCenteredTexture(Ptexture, Player.x, Player.y, WHITE);
-        
-        if(!CheckObjgr(map, &Player, "Inimigos"))
-        {
-            if(!EnemyDefeated(map, &Player, enemies))
+            mapCanvas(currentMap, map);
+            DrawRectangle(Player.x, Player.y, Player.width, Player.height, RED);
+            if(CheckObjgr(map, &Player, "Inimigos"))
             {
-                DrawText("Press E to interact", Player.x-10, Player.y-10, 20, WHITE);
-                if (IsKeyPressed(KEY_E))
+                if(!EnemyDefeated(map, &Player, enemies))
                 {
-                    //chama pra conversar sobre lutar e quando ganhar trocar o valor de defeated pra true
+                    DrawText("Press E to interact", Player.x-10, Player.y-10, 20, WHITE);
+                    if (IsKeyPressed(KEY_E))
+                    {
+                        SetActiveScreen(&FoundEnemyCanvas);
+                        isRunning = 0;
+                    }
                 }
-            }
-        } 
-        else if(CheckObjgr(map, &Player, "Portas"))
-        {
-            DrawText("Press E to enter", Player.x-10, Player.y-10, 20, WHITE);
-            if (IsKeyPressed(KEY_E))
-            {
-                UpdateMap(map, &Player, &currentMap);
-                printf("o mapa %d foi carregado\n", currentMap+1);
-                map = GetMap(currentMap);
-                }
-            }
+                else if(CheckObjgr(map, &Player, "Portas"))
+                {
+                    DrawText("Press E to enter", Player.x-10, Player.y-10, 20, WHITE);
+                    if (IsKeyPressed(KEY_E))
+                    {
+                        UpdateMap(map, &Player, &currentMap);
+                        map = GetMap(currentMap);
+                        }
+                    }
+                
+                } 
+                
             
-        
-        //FoundEnemyCanvas();
-        //battleMenu();
-        //UpdateGameActions();
-       // TutorialCanvas();
+            //FoundEnemyCanvas();
 
+        }
 
         EndDrawing();
     }
-
+    
     // De-Initialization
     UnloadResources();
     CloseWindow();                  

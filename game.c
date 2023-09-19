@@ -25,6 +25,7 @@ void StartBattle(ArenaEnemy *enemy) {
 
 void StartPlaying(){
     InBattle = false;
+    SetRunning(true);
     SetActiveScreen(NULL);
 }
 
@@ -48,7 +49,7 @@ void UpdateGameActions() {
     if (result != 0) {
         if (result == 1) {      // voltar para a tela do mapa e setar que o inimigo foi derrotado
             printf("Player won!\n");
-            SetActiveScreen(&mainMenu);
+            StartPlaying();
         } else if (result == -1) {  // voltar para a tela do mapa e teletransportar para o inicio
             printf("Player lost!\n");
             SetActiveScreen(&mainMenu);

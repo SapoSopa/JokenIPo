@@ -19,3 +19,5 @@ void mapCanvas();
 void startBattleCanvas();
 
 void battleMenu();
+
+void Creditos();

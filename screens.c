@@ -24,6 +24,8 @@ void UpdateScreen(){
         (*activeScreen)();
 }
 
+
+
 void mainMenu(){
     static int selecao = 0;//(0 é Play) (1 é creditos) (2 é exit)
     Texture2D* background = GetTexture(Texture_torre); 
@@ -57,7 +59,7 @@ void mainMenu(){
         //SetActiveScreen(&FoundEnemyCanvas); //temporário
     }
     if(IsKeyPressed(KEY_ENTER)&&(selecao==1)){
-        //CREDITOS
+        SetActiveScreen(&Creditos);   
     }
     if(IsKeyPressed(KEY_ENTER)&&(selecao==2)){
         //EXIT
@@ -139,9 +141,9 @@ void FoundEnemyCanvas(){
     if(IsKeyPressed(KEY_ENTER)){
         switch(selecao){
             case 1:
-                //StartBattle();
+                StartBattle(GetEnemy(1));
                 break;
-            case 2:
+            case 0:
                 StartPlaying();
                 break;     
         }
@@ -167,6 +169,8 @@ void FoundEnemyCanvas(){
 
 void battleMenu(){
     static int selecao = 0;
+
+    UpdateGameActions();
 
     if(IsKeyPressed(KEY_LEFT)&&(selecao==0)){
         selecao = 8;
@@ -422,16 +426,15 @@ void PlayerControl(Rectangle *playerRect, tmx_map *map)
 }
 
 void Creditos(){
-    BeginDrawing();
-    ClearBackground(BLACK);
     DrawPropCenteredText("Créditos:", 0.1, 0.1, 24, WHITE);
      DrawPropCenteredText("Grupo 7", 0.1, 0.2, 24, WHITE);
      DrawPropCenteredText("João Miguel", 0.1, 0.3, 24, WHITE);
      DrawPropCenteredText("Heitor Melo", 0.1, 0.4, 24, WHITE);
      DrawPropCenteredText("Henrique Cesar", 0.1, 0.5, 24, WHITE);
      DrawPropCenteredText("Rodrigo Sampaio", 0.1, 0.6, 24, WHITE);
-     DrawPropCenteredText("Milena Neves", 0.1, 0.7, 24, WHITE);
+     DrawPropCenteredText("Millena Neves", 0.1, 0.7, 24, WHITE);
      DrawPropCenteredText("Isabela Lima", 0.1, 0.8, 24, WHITE);
-    EndDrawing();
+     if(IsKeyPressed(KEY_ENTER)){
+        SetActiveScreen(&mainMenu);}
 }
 

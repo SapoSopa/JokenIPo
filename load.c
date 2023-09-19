@@ -44,7 +44,7 @@ static char texturesToLoad[TO_LOAD_TEXTURES][100] = {
     "assets/textures/heart.png",
     "assets/textures/heart_empty.png",
     "assets/Personagens/Player/Começo.png",
-    "assets/Personagens/Player.png",
+    "assets/Personagens/Pplayer.png",
 };
 static char soundsToLoad[TO_LOAD_SOUNDS][100] = {
     "assets/audios/door.mp3",
@@ -125,10 +125,10 @@ void M_LoadTexture() {
 void ToLoadTextures() {
 }
 void ToLoadSounds() {
-    LoadSoundFile("/assets/audios/sounds.txt");
+    LoadSoundFile("assets/audios/sounds.txt");
 }
 void ToLoadMusics() {
-    LoadMusicFile("/assets/musicas/musics.txt");
+    LoadMusicFile("assets/musicas/musics.txt");
 }
 
 int SaveGame() {
