@@ -1,12 +1,14 @@
 #include "include/enemy.h"
 #include "include/config.h"
 #include "include/resourcesIdx.h"
+#include "include/map.h"
 #include "include/combat.h"
 #include "include/items.h"
 
 #include <stdlib.h>
 #include <time.h>
 #include "raylib.h"
+#include "tmx.h"
 
 static ArenaEnemy ArenaEnemies[ENEMY_COUNT];
 
@@ -15,6 +17,23 @@ static void InitEnemy(ArenaEnemy *enemy, int level)
     enemy->life = enemy->maxLife = PLAYER_MAX_LIFE;
 
 }
+
+static  EnemyList enemies[16] = {{"Inimigo I", false},
+                                {"Inimigo II", false},
+                                {"Inimigo III", false},
+                                {"Inimigo IV", false},
+                                {"Inimigo V", false},
+                                {"Inimigo VI", false},
+                                {"Inimigo VII", false},
+                                {"Inimigo VIII", false},
+                                {"Inimigo IX", false},
+                                {"Inimigo X", false},
+                                {"Inimigo XI", false},
+                                {"Inimigo XII", false},
+                                {"Inimigo XIII", false},
+                                {"Inimigo XIV", false},
+                                {"Inimigo XV", false},
+                                {"BOSS", false}};
 
 void StartEnemies() {
 
@@ -138,3 +157,42 @@ int EnemyChooseAction(ArenaEnemy *enemy) {
 
     return randomChoice;
 } 
+
+void SetDefeatEnemy(int id)
+{
+    enemies[id].defeated = true;
+}
+
+int EnemyId(tmx_map *map, Rectangle *playerRect, EnemyList *enemies)
+{
+    for (int i = 0; i < 16; i++)
+        if (CheckObjName(map, playerRect, "Inimigos", enemies[i].name))
+        {
+            for (int j = 0; j < 16; j++)
+            {
+                if (strcmp(enemies[i].name, enemies[i].name) == 0)
+                {
+                    return i;
+                }
+            }
+        }
+}
+
+bool EnemyDefeated(tmx_map *map, Rectangle *playerRect, EnemyList *enemies)
+{
+    for (int i = 0; i < 16; i++)
+        if (CheckObjName(map, playerRect, "Inimigos", enemies[i].name))
+        {
+            for (int j = 0; j < 16; j++)
+            {
+                if (strcmp(enemies[i].name, enemies[i].name) == 0)
+                {
+                    return enemies[i].defeated;
+                }
+            }
+        }
+}
+
+EnemyList* GetEnemies(){
+    return &enemies;
+}

@@ -2,11 +2,13 @@
 #define ARENA_H
 
 #include "config.h"
+#include "game.h"
 #include "combat.h"
 #include "enemy.h"
 #include "items.h"
 
 typedef struct M_Player ArenaPlayer;
+typedef struct M_RoundResult RoundResult;
 typedef struct Arena Arena;
 
 struct M_Player
@@ -42,7 +44,7 @@ int ArenaConstructor(Arena *ambient, ArenaPlayer *player, ArenaEnemy *enemy);
 int PlayerConstructor(ArenaPlayer *player);
 
 int nextRound(Arena *arena);   // next round
-int UpdateArena(Arena *arena, int *result, int *roundResult); // update ambient
+int UpdateArena(Arena *arena, RoundResult *result); // update ambient
 
 int selectPlayerAction(Arena *arena, Choice playerChoice); // do player action
 int selectEnemyAction(Arena *arena, Choice playerChoice);  // do enemy action
@@ -53,7 +55,7 @@ int selectEnemyItem(Arena *arena, int ItemInvIdx);  // select enemy item
 int doPlayerItemAction(Arena *arena); // do player item action
 int doEnemyItemAction(Arena *arena);  // do enemy item action
 
-int doCombat(Arena *arena, int *result); // do combat
+int doCombat(Arena *arena, RoundResult *result); // do combat
 
 int LoadMap(int mapIdx); // load map from maps
 int NextMap();           // load next map

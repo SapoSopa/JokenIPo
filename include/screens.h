@@ -14,7 +14,7 @@ void mainMenu();
 
 void TutorialCanvas();
 
-void mapCanvas();
+void mapCanvas(tmx_map *map);
 
 void startBattleCanvas();
 

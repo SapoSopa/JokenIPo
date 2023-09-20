@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(jokenipo VERSION 1.0.0 LANGUAGES C)
 
-add_executable(jokenipo "main.c" "items.c" "arena.c" "combat.c" "game.c" "enemy.c" "audio.c" "load.c" "canvas.c" "sprites.c" "screens.c")
+add_executable(jokenipo "main.c" "items.c" "arena.c" "map.c" "combat.c" "game.c" "enemy.c" "audio.c" "load.c" "canvas.c" "sprites.c" "screens.c")
 
 find_package(tmx REQUIRED)
 

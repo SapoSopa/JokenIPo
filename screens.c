@@ -25,7 +25,6 @@ void UpdateScreen(){
 }
 
 
-
 void mainMenu(){
     static int selecao = 0;//(0 é Play) (1 é creditos) (2 é exit)
     Texture2D* background = GetTexture(Texture_torre); 
@@ -56,7 +55,6 @@ void mainMenu(){
 
     if(IsKeyPressed(KEY_ENTER)&&(selecao==0)){
         StartTutorial();
-        //SetActiveScreen(&FoundEnemyCanvas); //temporário
     }
     if(IsKeyPressed(KEY_ENTER)&&(selecao==1)){
         SetActiveScreen(&Creditos);   
@@ -105,12 +103,13 @@ void mainMenu(){
     }
 }
 
+
 void TutorialCanvas(){
     Vector2 centerPoint= {GetScreenWidth()*0.5,GetScreenHeight()*0.5};
     float radius= GetScreenHeight()/5;
 
-    static int opcoes[9] = {Texture_rock, Texture_fire, Texture_scissors, Texture_human, Texture_sponge,
-                            Texture_paper, Texture_air, Texture_water, Texture_gun};
+    static int opcoes[9] = {Texture_scissors, Texture_human, Texture_sponge, Texture_paper, 
+                            Texture_air, Texture_water, Texture_gun, Texture_rock, Texture_fire};
     
     for(int i=0;i<9;i++){
         DrawCircle(centerPoint.x + radius *cos(i*2*PI/9), centerPoint.y + radius*sin(i*2*PI/9), 46, WHITE);
@@ -128,6 +127,7 @@ void TutorialCanvas(){
         StartPlaying();
     }
 }
+
 
 void FoundEnemyCanvas(){
     static int selecao = 0;
@@ -166,6 +166,7 @@ void FoundEnemyCanvas(){
     DrawPropRectangle(0.77, 0.13, 230, 260, VIOLET);
     DrawRectangleLines(GetScreenWidth() * 0.03, GetScreenHeight() * 0.53, 1180, 300, VIOLET);
 }
+
 
 void battleMenu(){
     static int selecao = 0;
@@ -215,163 +216,8 @@ void battleMenu(){
     DrawRectangleLines(GetScreenWidth() * 0.03, GetScreenHeight() * 0.65, GetScreenWidth() * 0.94, GetScreenHeight() * 0.3, BLUE);    
 }
 
-bool CheckObjName(tmx_map *map, Rectangle *playerRect, char *name, char *objName)
-{
-    tmx_layer *layer = NULL;
-    layer = map->ly_head;
-    while(layer)
-    {
-        if (layer->visible)
-        {
-            if (layer->type == L_OBJGR && layer->name && strcmp(layer->name, name) == 0)
-            {
-                if(layer->content.objgr)
-                {
-                    tmx_object *obj = layer->content.objgr->head;
-                    while (obj)
-                    {
-                        if (obj->name && strcmp(obj->name, objName) == 0)
-                        {
-                            if (CheckCollisionRecs(*playerRect, (Rectangle){obj->x, obj->y, obj->width, obj->height}))
-                            {
-                                return true;
-                            }
-                        }
-                        obj = obj->next;
-                    }
-                }
-            }               
-        }
-        layer = layer->next;
-    }
-    return false;
-}
 
-
-bool CheckObjgr(tmx_map *map, Rectangle *playerRect, char *name)
-{
-    tmx_layer *layer = NULL;
-    layer = map->ly_head;
-    while(layer)
-    {
-        if (layer->visible)
-        {
-            if (layer->type == L_OBJGR && layer->name && strcmp(layer->name, name) == 0)
-            {
-                if(layer->content.objgr)
-                {
-                    tmx_object *obj = layer->content.objgr->head;
-                    while (obj)
-                    {
-                        if (CheckCollisionRecs(*playerRect, (Rectangle){obj->x, obj->y, obj->width, obj->height}))
-                        {
-                            return true;
-                        }
-                        obj = obj->next;
-                    }
-                }
-            }               
-        }
-        layer = layer->next;
-    }
-    return false;
-}
-
-void UpdatePlayerPosition(tmx_map *map, Rectangle *playerRect)
-{
-    tmx_layer *layer = NULL;
-    layer = map->ly_head;
-    bool achou = false;
-    while(layer && !achou)
-    {
-        if (layer->visible)
-        {
-            if (layer->type == L_OBJGR && layer->name && strcmp(layer->name, "Pontos") == 0)
-            {
-                if(layer->content.objgr)
-                {
-                    tmx_object *obj = layer->content.objgr->head;
-                    while (obj && !achou)
-                    {
-                        if (obj->name && strcmp(obj->name, "Player") == 0)
-                        {
-                            playerRect->x = obj->x - playerRect->width/2;
-                            playerRect->y = obj->y - playerRect->height;
-                            achou = true;
-                            printf("posição x,y: %f,%f\n", playerRect->x, playerRect->y);
-                        }
-                        obj = obj->next;
-                    }
-                }
-            }               
-        }
-        layer = layer->next;
-    }
-}
-
-int CheckWhereToGo (tmx_map *map, Rectangle *playerRect)
-{
-    if(CheckObjName(map, playerRect, "Portas", "Porta_I"))
-    {
-    
-        return Porta_I;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_II"))
-    {
-        return Porta_II;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_III"))
-    {
-        return Porta_III;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_IV"))
-    {
-        return Porta_IV;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_V"))
-    {
-        return Porta_V;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_VI"))
-    {
-        return Porta_VI;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_VII"))
-    {
-        return Porta_VII;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_VIII"))
-    {
-        return Porta_VIII;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_IX"))
-    {
-        return Porta_IX;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_X"))
-    {
-        return Porta_X;
-    }
-    else if(CheckObjName(map, playerRect, "Portas", "Porta_XI"))
-    {
-        return Porta_XI;
-    }
-    else
-    {
-        return -1;
-    }
-}
-
-void UpdateMap(tmx_map *map, Rectangle *playerRect, int *currentMap)
-{
-    *currentMap = CheckWhereToGo(map, playerRect);
-    map = GetMap(*currentMap);
-    UpdatePlayerPosition(map, playerRect);
-}
-
-void mapCanvas (int i, tmx_map *map){
-    map = GetMap(i);
-
+void mapCanvas (tmx_map *map){
 	if (!map) {
 		tmx_perror("Cannot load map");
         return;
@@ -380,51 +226,6 @@ void mapCanvas (int i, tmx_map *map){
     render_map(map);
 }
 
-//quando tentei colocar no lugar certo (game.c), bugou tudo, então deixei aqui mesmo, tudo que ta aqui é de lá
-
-void PlayerControl(Rectangle *playerRect, tmx_map *map)
-{
-    Rectangle auxu = *playerRect;
-    auxu.y -= 5;
-    Rectangle auxd = *playerRect;
-    auxd.y += 5;
-    Rectangle auxl = *playerRect;
-    auxl.x -= 5;
-    Rectangle auxr = *playerRect;
-    auxr.x += 5;
-    if (IsKeyDown(KEY_UP) && !CheckObjgr(map, &auxu, "Paredes"))
-    {
-        playerRect->y -= 4; 
-    }
-    else if (IsKeyDown(KEY_UP) && CheckObjgr(map, &auxu, "Paredes"))
-    {
-        playerRect->y += 1;
-    }
-    if (IsKeyDown(KEY_DOWN) && !CheckObjgr(map, &auxd, "Paredes"))
-    {
-        playerRect->y += 4;
-    }
-    else if(IsKeyDown(KEY_DOWN) && CheckObjgr(map, &auxd, "Paredes"))
-    {
-        playerRect->y -= 1;
-    }
-    if (IsKeyDown(KEY_LEFT) && !CheckObjgr(map, &auxl, "Paredes"))
-    {
-        playerRect->x -= 4;
-    }
-    else if(IsKeyDown(KEY_LEFT) && CheckObjgr(map, &auxl, "Paredes"))
-    {
-        playerRect->x += 1;
-    }
-    if (IsKeyDown(KEY_RIGHT) && !CheckObjgr(map, &auxr, "Paredes"))
-    {
-        playerRect->x += 4;
-    }
-    else if(IsKeyDown(KEY_RIGHT) && CheckObjgr(map, &auxr, "Paredes"))
-    {
-        playerRect->x -= 1;
-    }
-}
 
 void Creditos(){
     DrawPropCenteredText("Créditos:", 0.5, 0.1, 24, WHITE);
@@ -438,4 +239,5 @@ void Creditos(){
      if(IsKeyPressed(KEY_ENTER)){
         SetActiveScreen(&mainMenu);}
 }
+
 

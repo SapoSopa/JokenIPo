@@ -1,4 +1,5 @@
 #include "include/items.h"
+#include "include/game.h"
 #include "include/combat.h"
 #include "include/enemy.h"
 #include "include/arena.h"
@@ -57,7 +58,7 @@ int nextRound(Arena *arena) {
     return 0;
 }
 
-int UpdateArena(Arena *arena, int *result, int *roundResult) {
+int UpdateArena(Arena *arena, RoundResult *result) {
     // bot choose action
     selectEnemyAction(arena, EnemyChooseAction(arena->enemy));        
 
@@ -79,13 +80,13 @@ int UpdateArena(Arena *arena, int *result, int *roundResult) {
 
     // check if someone died
     if ((arena->player)->life <= 0) {
-        (*result) = 2;
+        result->gameResult = 2;
         return 0;
         //GameOver();
     }
 
     if ((arena->enemy)->life <= 0) {
-        (*result) = 1;
+        result->gameResult = 1;
         return 0;
         //NextMap();
     }
@@ -101,7 +102,7 @@ int UpdateArena(Arena *arena, int *result, int *roundResult) {
     {
         printf("enemy choice: %d\n", arena->enemySelectedOption);
 
-        doCombat(arena, roundResult);
+        doCombat(arena, result);
         nextRound(arena);
     }
 
@@ -182,7 +183,7 @@ int doEnemyItemAction(Arena *arena) {
     return 0;
 }
 
-int doCombat(Arena *arena, int *result) {
+int doCombat(Arena *arena, RoundResult *result) {
     Choice playerChoice = arena->playerSelectedOption;
     Choice enemyChoice = arena->enemySelectedOption;
 
@@ -209,7 +210,9 @@ int doCombat(Arena *arena, int *result) {
         (arena->player)->life -= MIN_DMG;
     }
 
-    (*result) = winner;
+    result->roundResult = winner;
+    result->playerChoice = playerChoice;
+    result->enemyChoice = enemyChoice;
 
     return 0;
 }
