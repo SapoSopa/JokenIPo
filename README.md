@@ -20,6 +20,7 @@ O sistema de combate é baseado em uma versão modificada do jogo milenar de Jok
 <p align="center">
 <img loading="lazy" src="assets/Diagrama.jpg">
 </p>
+
 ## Desenvolvedores
 
 | [<img src="https://avatars.githubusercontent.com/u/144076975?v=4" width=115><br><sub>João Miguel</sub>](https://github.com/jmfs12) |  [<img src="https://avatars.githubusercontent.com/u/101292201?v=4" width=115><br><sub>Heitor Melo</sub>](https://github.com/HeitorMelo)  | [<img src="https://avatars.githubusercontent.com/u/129231720?v=4" width=115><br><sub>Henrique César</sub>](https://github.com/SapoSopa) | [<img src="https://avatars.githubusercontent.com/u/135606842?v=4" width=115><br><sub>Rodrigo Sampaio</sub>](https://github.com/Rstraiker32) |[<img src="https://avatars.githubusercontent.com/u/144119672?v=4" width=115><br><sub>Milena Neves</sub>](https://github.com/MillenaNeves)|[<img src="https://avatars.githubusercontent.com/u/120031834?v=4" width=115><br><sub>Isabela Lima</sub>](https://github.com/ils2)
